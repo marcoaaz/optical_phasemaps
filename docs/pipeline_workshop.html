@@ -1,0 +1,928 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pipeline workshop &mdash; Optical Phase Maps: Documentation  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/design-tabs.js?v=f930bc37"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Phase Interpreter" href="phase_interpreter.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Optical Phase Maps: Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="image_analysis_pipeline.html">Image analysis pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_analysis_pipeline.html#introduction">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_analysis_pipeline.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_analysis_pipeline.html#citations">Citations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cube_converter.html">Cube Converter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cube_converter.html#polarised-microscopy-processor">Polarised microscopy processor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cube_converter.html#multi-modal-pyramid-generator">Multi-modal pyramid generator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chemistry_simplifier.html">Chemistry Simplifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chemistry_simplifier.html#image-processing">Image processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chemistry_simplifier.html#analysis-definition">Analysis definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chemistry_simplifier.html#output-adjustments">Output adjustments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phase_interpreter.html">Phase Interpreter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phase_interpreter.html#define-map">Define map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phase_interpreter.html#customise-phase-map">Customise phase map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phase_interpreter.html#image-analysis">Image analysis</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Pipeline workshop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#workshop-exercises">Workshop exercises</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#part-1">Part 1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#exercise-1-demonstration-by-instructor-opening-a-250-gb-image">Exercise 1: Demonstration by instructor - opening a 250 GB image.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exercise-2-qupath-multi-view-canvas">Exercise 2: QuPath multi-view canvas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exercise-3-boxing-in-images-within-the-multi-view-canvas">Exercise 3: ‘Boxing in’ images within the multi-view canvas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exercise-4-multi-view-with-ray-tracing-and-dimensionality-reduction">Exercise 4: Multi-view with ray tracing and dimensionality reduction</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#part-2a">Part 2A</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#exercise-1-ray-tracing">Exercise 1: Ray tracing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exercise-2-making-a-z-stack">Exercise 2: Making a z-stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exercise-3-dimensionality-reduction">Exercise 3: Dimensionality reduction</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#part-2b">Part 2B</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#exercise-1-phase-mapping">Exercise 1: Phase mapping</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#i-navigation">I. Navigation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ii-annotation">II. Annotation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#iii-generate-multi-channel-stack-overlay">III. Generate multi-channel stack (overlay)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#iv-transfer-annotations">IV. Transfer annotations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#v-train-and-predict-using-a-learning-model">V. Train and predict using a learning model</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#part-3">Part 3</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#exercise-1-phase-interpretation">Exercise 1: Phase interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#benchmark">Benchmark:</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Optical Phase Maps: Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Pipeline workshop</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/pipeline_workshop.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pipeline-workshop">
+<span id="chap-workshop1"></span><h1>Pipeline workshop<a class="headerlink" href="#pipeline-workshop" title="Link to this heading"></a></h1>
+<p>This workshop took place in . Attendants were asked to download all the
+datasets and install the free software QuPath for Part 1. Meanwhile,
+Part 2 required installing Cube Converter and Chemistry Simplifier for
+Windows 11 OS.</p>
+<p>The workshop introduced offline standalone software to process very
+large images: (1) Cube converter, (2) Chemistry simplifier, and (3)
+phase interpreter. They can be combined into image analysis pipelines
+for semi-automated mineralogy. The pipelines can be customised by the
+user and work on their PC to allow advanced navigation, pixel
+classification (QuPath software), object identification and
+dimensionality reduction applied to a variety of rock types (igneous,
+metamorphic, and sedimentary).</p>
+<p>Using an example of a pyroxenite (websterite) thin section, the workshop
+demonstrated how image analysis tools can help to transition from
+subjective user-driven classification to more objective interpretation
+of object classes and their mutual relationships.</p>
+</section>
+<section id="workshop-exercises">
+<h1>Workshop exercises<a class="headerlink" href="#workshop-exercises" title="Link to this heading"></a></h1>
+<section id="part-1">
+<h2>Part 1<a class="headerlink" href="#part-1" title="Link to this heading"></a></h2>
+<section id="exercise-1-demonstration-by-instructor-opening-a-250-gb-image">
+<h3>Exercise 1: Demonstration by instructor - opening a 250 GB image.<a class="headerlink" href="#exercise-1-demonstration-by-instructor-opening-a-250-gb-image" title="Link to this heading"></a></h3>
+<p>A huge pyramidal OME TIFF image can be opened in less than 5 seconds.
+The image data was saved in an external drive and the instructor will
+open it in his screen simply for demonstration.</p>
+<p>This shows that image formats are fundamental for the workflow. An
+example image pyramid is shown below.</p>
+<p><a class="reference internal" href="_images/image1.png"><img alt="image" src="_images/image1.png" style="width: 2.33333in; height: 2.33333in;" /></a></p>
+</section>
+<section id="exercise-2-qupath-multi-view-canvas">
+<h3>Exercise 2: QuPath multi-view canvas<a class="headerlink" href="#exercise-2-qupath-multi-view-canvas" title="Link to this heading"></a></h3>
+<p>Please follow these steps on your PC:</p>
+<ol class="arabic">
+<li><p>Go to “../Seminar_material/exercises_data”</p></li>
+<li><p>Create an empty folder
+“../Seminar_material/exercises_data/exercise_2”</p></li>
+<li><p>OPen QuPath and create a new project selecting that folder.</p></li>
+<li><p>In QuPath:</p>
+<ol class="arabic">
+<li><p>Right-click in the black canvas &gt; Multi-view &gt; Synchronize viewers
+(deactivate)</p></li>
+<li><p>Right-click in the black canvas &gt; Multi-view &gt; Set grid size &gt;
+Grid 2x2</p></li>
+<li><p>On the Project tab &gt; Add images &gt; Choose files &gt;</p>
+<ol class="arabic simple">
+<li><p>“..\Seminar_material\exercises
+data\registered_pyramids\montages_original” &gt; select all &gt;
+Import</p></li>
+<li><p>“..\Seminar_material\exercises
+data\registered_pyramids\ama_phasemap_pyramid.tif”</p></li>
+<li><p>“ ..\Seminar_material\exercises
+data\registered_pyramids\BSE_pyramid.tif”</p></li>
+</ol>
+</li>
+<li><p>All images should now be displayed in Data tree.</p></li>
+<li><p>Open the following four images:</p>
+<ol class="arabic simple">
+<li><p>Click the first split (top left) &gt; “ama_phasemap_pyramid.tif”
+(double click)</p></li>
+<li><p>Click the second split (top right) &gt; “BSE_pyramid.tif”</p></li>
+<li><p>Click the third split (top right) &gt; “10x_RL BF_01_z0.tif”</p></li>
+<li><p>Click the fourth split (bottom right) &gt; “10x_xpl-0_01_z0.tif”</p></li>
+</ol>
+</li>
+<li><p>Right-click in the canvas &gt; Multi-view &gt; Synchronize viewers
+(activate).</p></li>
+<li><div class="line-block">
+<div class="line">If the images are not perfectly aligned, click on “Set the
+current viewer’s zoom to fit the images” (for each image) and
+re-synchronize</div>
+<div class="line"><a class="reference internal" href="_images/image2.png"><img alt="image1" src="_images/image2.png" style="width: 1.57274in; height: 0.79092in;" /></a></div>
+</div>
+</li>
+</ol>
+</li>
+</ol>
+<p>The successful canvas now looks like this. You can now seamlessly
+navigate between a phase map (top left), BSE (top right), reflected
+light (bottom left) and an XPL optical image (bottom right).</p>
+<p><a class="reference internal" href="_images/image3.png"><img alt="A screenshot of a computer screen AI-generated content may be incorrect." src="_images/image3.png" style="width: 6.26806in; height: 3.50417in;" /></a></p>
+</section>
+<section id="exercise-3-boxing-in-images-within-the-multi-view-canvas">
+<h3>Exercise 3: ‘Boxing in’ images within the multi-view canvas<a class="headerlink" href="#exercise-3-boxing-in-images-within-the-multi-view-canvas" title="Link to this heading"></a></h3>
+<p>You’ll notice that there are many more images available in the data
+tree. While QuPath offers the option of using a 3x3 or larger canvas,
+simultaneously viewing such large numbers of images becomes
+counter-intuitive. To overcome this issue, we instead group related
+images into a single z-stack. For example, we can burn all optical
+images into a stack, or we can stack 6-12 chemical maps into a single
+stack. Each stack then only occupies one filed in the canvas and we
+instead flick between stack layers to display the various images within
+the stack. In the example below, you will generate a 2x2 canvas with all
+xpl images in a stack in the top left panel, all ppl images in a stack
+in the top right and one reflected light and one BSE image in the bottom
+two panels, respectively.</p>
+<p>On your PC follow these steps:</p>
+<ol class="arabic">
+<li><p>Go to “../Seminar_material/exercises_data”</p></li>
+<li><p>Create an empty folder
+“../Seminar_material/exercises_data/exercise_3”</p></li>
+<li><p>Go to QuPath and create a new project selecting that folder.</p></li>
+<li><p>In QuPath:</p>
+<ol class="arabic">
+<li><p>Right-click in the black canvas &gt; Multi-view &gt; Synchronize viewers
+(deactivate)</p></li>
+<li><p>Right-click in the black canvas &gt; Multi-view &gt; Set grid size &gt;
+Grid 2x2</p></li>
+<li><p>On the Project tab &gt; Add images &gt; Choose files &gt;</p>
+<ol class="arabic simple">
+<li><p>“..\Seminar_material\exercises
+data\registered_pyramids\montages_z-stack” &gt; select all &gt;
+Import</p></li>
+<li><p>“..\Seminar_material\exercises
+data\registered_pyramids\montages_z-stack\10x_RL
+BF_01_z0.tif”</p></li>
+<li><p>“..\Seminar_material\exercises
+data\registered_pyramids\BSE_pyramid.tif”</p></li>
+</ol>
+</li>
+<li><p>All images should be displayed in Data tree.</p></li>
+<li><p>Open the following images:</p>
+<ol class="arabic simple">
+<li><p>Click the first split (top left) &gt; “xpl_z-stack.tif” (double
+click)</p></li>
+<li><p>Click the second split (top right) &gt; “ppl_z-stack.tif”</p></li>
+<li><p>Click the third split (bottom left) &gt; “10x_RL BF_01_z0.tif”</p></li>
+<li><p>Click the fourth split (bottom right) &gt; “BSE_pyramid.tif”</p></li>
+</ol>
+</li>
+<li><p>Right-click in the canvas &gt; Multi-view &gt; Synchronize viewers
+(activate).</p></li>
+<li><div class="line-block">
+<div class="line">If the images are not perfectly aligned, click on “Set the
+current viewer’s zoom to fit the images” (for each image) and
+re-synchronize</div>
+<div class="line"><a class="reference internal" href="_images/image2.png"><img alt="image2" src="_images/image2.png" style="width: 1.57274in; height: 0.79092in;" /></a></div>
+</div>
+</li>
+</ol>
+</li>
+</ol>
+<p>The successful canvas now looks like this:</p>
+<p><a class="reference internal" href="_images/image4.png"><img alt="image3" src="_images/image4.png" style="width: 6.26673in; height: 3.50003in;" /></a></p>
+<p>Note that the two z-stacks have a slider at the top left (in blue) that
+can be click-dragged to flick between images.</p>
+</section>
+<section id="exercise-4-multi-view-with-ray-tracing-and-dimensionality-reduction">
+<h3>Exercise 4: Multi-view with ray tracing and dimensionality reduction<a class="headerlink" href="#exercise-4-multi-view-with-ray-tracing-and-dimensionality-reduction" title="Link to this heading"></a></h3>
+<p>In multimodal microscopy, with up to 20 imagery of the same specimen,
+our capacity to digest the incredible amount of information reaches its
+limits. Furthermore, for classifying pixels, the complexities of light
+interaction with anisotropic minerals confuse learning algorithms. To
+reduce these complexities, we have developed two methods which summarise
+the images:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.mdpi.com/2075-163X/13/2/156">Ray tracing</a>: performs
+descriptive statistics of the optical image stack as single images for
+each microscopy modality (PPL, XPL). The most useful image is the
+maximum RGB intensity, both in PPL and XPL. The latter is equivalent
+to a ‘circular polarisation’ image.</p></li>
+<li><p><a class="reference external" href="https://doi.org/10.1016/j.chemgeo.2024.121997">Chemical dimensionality
+reduction</a>: performs
+three different types of simplification of chemical image stacks via
+PCA, UMAP or DSA (see Part 2). In practice, PCA images, where RGB
+represent loadings on PC1, PC2 and PC3, do well at showing mineralogy
+(phase maps), while the neural network DSA can reveal faint zonations.</p></li>
+</ul>
+<p>In the next exercise, you will generate a 2x2 canvas combining an
+optical stack, a BSE image, an SEM-EDX phase map and then a chemistry
+simplification stack.</p>
+<p>On your PC follow these steps:</p>
+<ol class="arabic">
+<li><p>Go to “../Seminar_material/exercises_data”</p></li>
+<li><p>Create an empty folder
+“../Seminar_material/exercises_data/exercise_4”</p></li>
+<li><p>Go to QuPath and create a new project selecting that folder.</p></li>
+<li><p>In QuPath:</p>
+<ol class="arabic">
+<li><p>Right-click in the black canvas &gt; Multi-view &gt; Synchronize viewers
+(deactivate)</p></li>
+<li><p>Right-click in the black canvas &gt; Multi-view &gt; Set grid size &gt;
+Grid 2x2</p></li>
+<li><p>On the Project tab &gt; Add images &gt; Choose files &gt;</p>
+<ol class="arabic simple">
+<li><p>“..\Seminar_material\exercises
+data\registered_pyramids\montages_z-stack\optical-z-stack.tif”
+&gt; Import</p></li>
+<li><p>“..\Seminar_material\exercises
+data\registered_pyramids\BSE_pyramid.tif”</p></li>
+<li><p>“..\Seminar_material\exercises
+data\registered_pyramids\ama_phasemap_pyramid.tif”</p></li>
+<li><p>“..\Seminar_material\exercises
+data\registered_pyramids\montages_z-stack\reduced_z-stack.tif”</p></li>
+</ol>
+</li>
+<li><p>All images should be displayed in the Data tree.</p></li>
+<li><p>Open the following images:</p>
+<ol class="arabic simple">
+<li><p>Click the first split (top left) &gt; “optical_z-stack.tif”
+(double click)</p></li>
+<li><p>Click the third split (top right) &gt; “BSE_pyramid.tif”</p></li>
+<li><p>Click the first split (bottom left) &gt;
+“ama_phasemap_pyramid.tif”</p></li>
+<li><p>Click the fourth split (bottom right) &gt; “reduced_z-stack.tif “</p></li>
+</ol>
+</li>
+<li><p>Right-click in the canvas &gt; Multi-view &gt; Synchronize viewers
+(activate).</p></li>
+<li><div class="line-block">
+<div class="line">If the images are not perfectly aligned, click on “Set the
+current viewer’s zoom to fit the images” (for each image) and
+re-synchronize</div>
+<div class="line"><a class="reference internal" href="_images/image2.png"><img alt="image4" src="_images/image2.png" style="width: 1.57274in; height: 0.79092in;" /></a></div>
+</div>
+</li>
+</ol>
+</li>
+</ol>
+<p>The successful output looks like this:</p>
+<p><a class="reference internal" href="_images/image5.png"><img alt="image5" src="_images/image5.png" style="width: 6.26806in; height: 3.50417in;" /></a></p>
+<p>Not only are these images quicker to see but they can be studied with
+Machine/Deep learning algorithms. For example, QuPath allows drawing
+manual annotations (on each) and merging images and annotations into a
+multi-channel image (not a z-stack) for phase mapping using the “Pixel
+Classifier” (content of Part 2B).</p>
+</section>
+</section>
+<section id="part-2a">
+<h2>Part 2A<a class="headerlink" href="#part-2a" title="Link to this heading"></a></h2>
+<p>This part is dedicated to Windows users.</p>
+<section id="exercise-1-ray-tracing">
+<h3>Exercise 1: Ray tracing<a class="headerlink" href="#exercise-1-ray-tracing" title="Link to this heading"></a></h3>
+<p>When acquiring optical scans with slide scanners, a larger number of
+images are produced and saved in a “data tree” file. The QUT and UQ
+Evident VS200 slide scanners has been implemented to use polarisers and
+therefore serve as a petrographic microscope. In this exercise, you will
+use new software to crunch your stage rotation images (XPL-0, 15, 30,
+45, ..) into summary representations. We call them XPL-(max, min, etc.)
+ray traced images.</p>
+<p>The outputs can be read in QuPath or in Evident “software suite” with
+ease and without paying for expensive software.</p>
+<p>On your PC follow these steps:</p>
+<ol class="arabic">
+<li><p>Open “../Seminar_material/files/Cube Converter v1/Cube Converter
+v1.exe” (unzipped)</p></li>
+<li><ol class="arabic simple">
+<li><p>Polarised microscopy processor</p></li>
+</ol>
+<ol class="arabic simple">
+<li><p>Image pyramid &gt; Browse &gt; “D:\Seminar_material\exercises
+data\optical\Image_03.vsi”</p></li>
+<li><p>Pyramid &gt; level = 3</p></li>
+<li><p>Tiles and montages &gt; All original scans</p></li>
+<li><p>Ray tracing options</p>
+<ol class="arabic simple">
+<li><p>&gt; PPL pleochroism and XPL birefringence (ticked on)</p></li>
+<li><p>&gt; Maximum, Maximum index</p></li>
+</ol>
+</li>
+<li><p>Run</p></li>
+</ol>
+</li>
+</ol>
+<p>You were successful if the output looks like this:</p>
+<p><a class="reference internal" href="_images/image6.png"><img alt="A screenshot of a computer AI-generated content may be incorrect." src="_images/image6.png" style="width: 6.26806in; height: 3.09583in;" /></a></p>
+<p>The “pyramid_sizes.csv” contains the experiment metadata for future
+reference:</p>
+<p><a class="reference internal" href="_images/image7.png"><img alt="image6" src="_images/image7.png" style="width: 5.99528in; height: 2.6011in;" /></a></p>
+</section>
+<section id="exercise-2-making-a-z-stack">
+<h3>Exercise 2: Making a z-stack<a class="headerlink" href="#exercise-2-making-a-z-stack" title="Link to this heading"></a></h3>
+<p>Z-stacks for biological samples are produced to vertically observe these
+tissue samples at different depths (the z-axis) for adjacent microtomed
+slices of the tissue. For us, mineral appearance (colour) changes in
+birefringent materials. In addition, the grains have random
+orientation/shape and relatively flat interiors that are not easily
+learnable.</p>
+<p>We developed the ‘hack’ of using “virtual” z-stacks to see petrographic
+images in colour and different experiment orientations (not depths)
+while focusing at the sample surface (using reflected light). Balz calls
+them <em>data cubes</em>. Cube converter (right hand side of interface) allows
+stacking optical and chemical images if they were pre-aligned
+(registered) with each other. I made a video detailing how to do align
+images with an ImageJ plugin, see “booklet_11-Nov-24_extra
+materials.docx” QUT routines (video #2).</p>
+<p>On your PC follow these steps:</p>
+<ol class="arabic">
+<li><p>Open “../Seminar_material/files/Cube Converter v1/Cube Converter
+v1.exe” (unzipped)</p></li>
+<li><ol class="arabic simple" start="2">
+<li><p>Multi-modal z-stack generator</p></li>
+</ol>
+<ol class="arabic simple">
+<li><p>Input list:</p>
+<ol class="arabic simple">
+<li><p>Add &gt;</p>
+<ol class="arabic simple">
+<li><p>“..\Seminar_material\exercises
+data\registered_pyramids\montages_original\10x_xpl-0_01_z0.tif”</p></li>
+<li><p>“..\Seminar_material\exercises
+data\registered_pyramids\montages_original\10x_xpl-30_01_z0.tif”</p></li>
+<li><p>“..\Seminar_material\exercises
+data\registered_pyramids\montages_original\10x_xpl-45_01_z0.tif”</p></li>
+<li><p>“..\Seminar_material\exercises
+data\registered_pyramids\montages_original\10x_xpl-75_01_z0.tif”</p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>Pyramid calibration = 1.095 µm/pixel.</p>
+<ol class="arabic simple">
+<li><p>If you do not know it. This can be calculated with:</p></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<div class="math notranslate nohighlight">
+\[pixel\ size\ \left( \frac{µm}{px} \right) = \left( microscope\ objective\ calibration\left( \frac{µm}{px} \right) \right) \times \ 2^{pyramid\ level\ chosen}\]</div>
+<ol class="arabic simple">
+<li><p>Output file &gt; my_first_z-stack</p></li>
+<li><p>Select Folder &gt; create and choose a folder
+“..\Seminar_material\exercises
+data\registered_pyramids\montages_z-stack” &gt; Select Folder</p></li>
+<li><p>Run</p></li>
+</ol>
+<p>You were successful if the output looks like this:</p>
+<p><a class="reference internal" href="_images/image8.png"><img alt="image7" src="_images/image8.png" style="width: 3.5284in; height: 2.83765in;" /></a></p>
+</section>
+<section id="exercise-3-dimensionality-reduction">
+<h3>Exercise 3: Dimensionality reduction<a class="headerlink" href="#exercise-3-dimensionality-reduction" title="Link to this heading"></a></h3>
+<p>Chemistry simplifier software can be used to dimensionally reduce the
+number of chemical images into new red, green, and blue (RGB) images of
+high interpretability. In the guts of the software, randomly sampled
+pixels are used to factorise (Principal component “PCA”), fit (Deep
+sparse autoencoder “DSA”), and topologically approximate (Uniform
+manifold approximation and projection “UMAP) a model that reduces the
+input chemical stack (SEM-EDX, XFM, XRF, spectra, etc.) into 3 channels.
+The model is then used to transform (parallel computation) the pixels of
+all the image while saving the process metadata required to reuse the
+models later (e.g., for scaling up to more thin sections).</p>
+<p>These “representation” images allow tracking element-mineral association
+without having to flick between too many images. In most commercial
+software, this is done using ‘composite’ images for elemental
+combinations (e.g., Fe-K-Mg in a colourmap) that require a subjective
+choice of elements.</p>
+<p>On your PC follow these steps:</p>
+<ol class="arabic">
+<li><p>Open “../Seminar_material/files/Chemistry Simplifier v1/Chemistry
+Simplifier v1.exe” (unzipped)</p></li>
+<li><ol class="arabic simple">
+<li><p>Pyramid generation and image processing</p></li>
+</ol>
+<ol class="arabic simple">
+<li><p>Destination &gt; “trial_1”</p></li>
+<li><p>Experiments &gt; “..\Seminar_material\exercises
+data\sem\sem-edx\after_selected”</p></li>
+<li><p>Filtered search &gt; (.+)</p></li>
+<li><p>Image format &gt; png</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="2">
+<li><p>Input and analysis definition</p></li>
+</ol>
+<ol class="arabic simple">
+<li><p>Output_tag &gt; “tag_1”</p></li>
+<li><p>Click Refresh. Note that the list should auto-fill with the 16
+images within the folder.</p></li>
+<li><p>Dimensionality reduction &gt; Principal component analysis (ticked
+on)</p></li>
+</ol>
+</li>
+<li><p>(3) Model parametrisation &gt; Performance constraints &gt; Downsampling &gt;
+Scale = 1; Resolution = Full (1).</p>
+<ol class="arabic simple">
+<li><p><em>If your computer is slow, please, use Scale = 2 and Resolution =
+2</em></p></li>
+</ol>
+</li>
+<li><p>Run</p></li>
+</ol>
+<p>You were successful if the output looks like this:</p>
+<p><a class="reference internal" href="_images/image9.png"><img alt="image8" src="_images/image9.png" style="width: 6.26806in; height: 1.95694in;" /></a></p>
+<p>Containing a folder with recoloured images to help you know what images
+are not useful:</p>
+<p><a class="reference internal" href="_images/image10.png"><img alt="image9" src="_images/image10.png" style="width: 6.26806in; height: 4.15903in;" /></a></p>
+<p>, and another folder containing the ‘tag’ transformation output shown
+below. The “montage_pca.tif” image has been opened (right-hand side)
+showing colour contrast between minerals:</p>
+<p><a class="reference internal" href="_images/image11.png"><img alt="image10" src="_images/image11.png" style="width: 6.14458in; height: 4.03557in;" /></a></p>
+<p>The DSA and UMAP transforms will not be used during this workshop, but
+you can try them at home (over night). If you are curious to view them,
+find them at:</p>
+<ul class="simple">
+<li><p>“D:\Seminar_material\exercises
+data\registered_pyramids\dsa_selected_artefacts_8bit_pyramid.tif”</p></li>
+<li><p>“D:\Seminar_material\exercises
+data\registered_pyramids\umap_selected_artefacts_8bit_pyramid.tif”</p></li>
+</ul>
+</section>
+</section>
+<section id="part-2b">
+<h2>Part 2B<a class="headerlink" href="#part-2b" title="Link to this heading"></a></h2>
+<p>This part is dedicated to Mac OS users.</p>
+<section id="exercise-1-phase-mapping">
+<h3>Exercise 1: Phase mapping<a class="headerlink" href="#exercise-1-phase-mapping" title="Link to this heading"></a></h3>
+<p>QuPath was designed as a platform where users can see the deployment of
+image analysis algorithms with a tile-based system at multiple
+resolution scales (pyramids). The software includes pixel classification
+functionality that links images, annotations, and supervised learning
+models for semantic segmentation. In this exercise, you will learn to
+use the interface to annotate, train, and calibrate (in live mode) image
+segmentation in use of all the available dimensions within the input
+image stack.</p>
+<p>The key is to combine optical with dimensionally reduced chemical maps
+(read Part 2A), which ensures that the classifier has enough information
+to distingusih the ‘features’ that we are interested in the sample
+and/or target minerals.</p>
+<p>We will ask you to use QuPath to:</p>
+<ol class="arabic simple">
+<li><p>Navigate the sample. Your petrographic microscopy knowledge will be
+key.</p></li>
+<li><p>Define annotation categories and draw polygon <em>annotations</em> using the
+multi-view (see Part 1).</p></li>
+<li><p>Generate a ‘<em>multi-channel</em> overlay’</p></li>
+<li><p>Transfer annotations to the overlay.</p></li>
+<li><p>Train a Random Tree model and save the model. Then, predict the map
+corresponding to that classifier within the QuPath project folder.</p></li>
+</ol>
+<p>Some level of familiarity with the Pixel classifier menu is required but
+we will mostly use default values today (try it at home).</p>
+<section id="i-navigation">
+<h4>I. Navigation<a class="headerlink" href="#i-navigation" title="Link to this heading"></a></h4>
+<p>On your PC, follow these steps:</p>
+<ol class="arabic">
+<li><p>Go to “../Seminar_material/exercises_data”</p></li>
+<li><p>Create an empty folder
+“../Seminar_material/exercises_data/exercise_1”</p></li>
+<li><p>Go to QuPath and create a new project selecting that folder.</p></li>
+<li><p>In QuPath:</p>
+<ol class="arabic">
+<li><p>Right-click in the black canvas &gt; Multi-view &gt; Synchronize viewers
+(deactivate)</p></li>
+<li><p>Right-click in the black canvas &gt; Multi-view &gt; Set grid size &gt;
+Grid 2x2</p></li>
+<li><p>On the Project tab &gt; Add images &gt; Choose files &gt;</p>
+<ol class="arabic simple">
+<li><p>“..\Seminar_material\exercises
+data\registered_pyramids\montages_rt\xpl_max_z0.tif” &gt;
+Import</p></li>
+<li><p>“..\Seminar_material\exercises
+data\registered_pyramids\montages_original\10x_RL
+BF_01_z0.tif”</p></li>
+<li><p>“..\Seminar_material\exercises
+data\registered_pyramids\BSE_pyramid.tif”</p></li>
+<li><p>“.. \Seminar_material\exercises
+data\registered_pyramids\pca_selected_artefacts_8bit_pyramid.tif”</p></li>
+</ol>
+</li>
+<li><p>All images should be displayed in the Data tree.</p></li>
+<li><p>Open the following images:</p>
+<ol class="arabic simple">
+<li><p>Click the first split (top left) &gt; “xpl_max_z0.tif” (double
+click)</p></li>
+<li><p>Click the third split (top right) &gt; “10x_RL BF_01_z0.tif”</p></li>
+<li><p>Click the first split (bottom left) &gt; “BSE_pyramid.tif”</p></li>
+<li><p>Click the fourth split (bottom right) &gt;
+“pca_selected_artefacts_8bit_pyramid.tif”</p></li>
+</ol>
+</li>
+<li><p>Right-click in the canvas &gt; Multi-view &gt; Synchronize viewers
+(activate).</p></li>
+<li><div class="line-block">
+<div class="line">If the images are not perfectly aligned, click on “Set the
+current viewer’s zoom to fit the images” (for each image) and
+re-synchronize</div>
+<div class="line"><a class="reference internal" href="_images/image12.png"><img alt="image11" src="_images/image12.png" style="width: 1.57314in; height: 0.7501in;" /></a></div>
+</div>
+</li>
+</ol>
+</li>
+</ol>
+<p>You were successful if you output looks like this:</p>
+<p><a class="reference internal" href="_images/image13.png"><img alt="image12" src="_images/image13.png" style="width: 6.26806in; height: 3.40833in;" /></a></p>
+</section>
+<section id="ii-annotation">
+<h4>II. Annotation<a class="headerlink" href="#ii-annotation" title="Link to this heading"></a></h4>
+<p>In your QuPath project, follow these steps:</p>
+<ol class="arabic simple">
+<li><p>Go to the Annotations tab</p></li>
+<li><p>Add items to the class list:</p>
+<ol class="arabic simple">
+<li><p>click the “+” button (in red below)</p></li>
+<li><p>cpx, opx, grt, spn, olv, background, hole</p></li>
+</ol>
+</li>
+<li><p>Change the colour of each category: click square next to each class
+(in blue below) and select a new colour. Follow the legend at last
+page of the <em>booklet</em> printout.</p></li>
+</ol>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><a class="reference internal" href="_images/image14.png"><img alt="image13" src="_images/image14.png" style="width: 1.68187in; height: 2.98952in;" /></a></p></th>
+<th class="head"><p><a class="reference internal" href="_images/image15.png"><img alt="image14" src="_images/image15.png" style="width: 1.67169in; height: 2.98967in;" /></a></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple">
+<li><p>Annotate each class.</p>
+<ol class="arabic simple">
+<li><p>In the canvas, choose an image where you feel you can do a good
+annotation.</p></li>
+<li><p>Draw polygons on top of each mineral class. The ‘brush’ and ‘wand’
+tools are useful.</p></li>
+</ol>
+</li>
+</ol>
+<p><a class="reference internal" href="_images/image16.png"><img alt="image15" src="_images/image16.png" style="width: 4.45896in; height: 0.46882in;" /></a></p>
+<ol class="arabic simple">
+<li><p>In the example below: right-click the annotation (yellow contour) &gt;
+Set classification &gt; “cpx”</p></li>
+</ol>
+<p><a class="reference internal" href="_images/image17.png"><img alt="image16" src="_images/image17.png" style="width: 5.26037in; height: 1.9046in;" /></a></p>
+<ol class="arabic simple">
+<li><p>The process is satisfactory usually when you have 3 or 4 annotations
+per class.</p></li>
+<li><p>When completed, go to Menu toolbar &gt; File &gt; Save.</p></li>
+<li><p>Repeat for each image if you <em>annotated multiple images</em> in the
+canvas*.</p></li>
+</ol>
+<p>*The annotations are saved within each image. If switching images (or
+the project) you need to save your progress (File &gt; Save).</p>
+</section>
+<section id="iii-generate-multi-channel-stack-overlay">
+<h4>III. Generate multi-channel stack (overlay)<a class="headerlink" href="#iii-generate-multi-channel-stack-overlay" title="Link to this heading"></a></h4>
+<p>First, we need to install a QuPath extension for image registration
+(only once):</p>
+<ol class="arabic simple">
+<li><p>Go to Menu toolbar &gt; Extensions &gt; Manage extensions &gt; Manage
+extensions catalogs (button)</p></li>
+<li><p>Catalog URL (copy-paste: <a class="reference external" href="https://github.com/BIOP/qupath-biop-catalog">https://github.com/BIOP/qupath-biop-catalog</a>)
+&gt; Add</p></li>
+<li><p>Exit and reopen the software and open your project.</p></li>
+</ol>
+<p>In your reopened QuPath project, follow these steps:</p>
+<ol class="arabic simple">
+<li><p>Open an image in the canvas (double click in the data tree). For
+example, “BSE_pyramid.tif”.</p></li>
+<li><p>Go to Menu bar &gt; Analyze &gt; Interactive image combiner Warpy</p></li>
+</ol>
+<p><a class="reference internal" href="_images/image18.png"><img alt="image17" src="_images/image18.png" style="width: 5.78844in; height: 2.67938in;" /></a></p>
+<ol class="arabic simple">
+<li><p>Choose images from project &gt; select all &gt; OK</p></li>
+<li><p>Click <em>Create</em>*</p></li>
+</ol>
+<p><a class="reference internal" href="_images/image19.png"><img alt="image18" src="_images/image19.png" style="width: 5.75098in; height: 2.68625in;" /></a></p>
+<ol class="arabic simple">
+<li><p>A multi-channel image will be added in the data tree and opened*.</p></li>
+</ol>
+<p>*In old versions, you needed to: Go to the Annotation toolbar &gt;
+Brightness &amp; contrast tool &gt; tick on all (or custom selection). Then,
+click Create.</p>
+<ol class="arabic simple">
+<li><p>Close “Image Combiner Warpy (experimental)” window.</p></li>
+</ol>
+<p><a class="reference internal" href="_images/image20.png"><img alt="image19" src="_images/image20.png" style="width: 6.26806in; height: 3.36875in;" /></a></p>
+<ol class="arabic simple">
+<li><p>Optional: Compare the new image with the inputs. The multi-channel
+image has 12 channels (4 x 3-channels) as below:</p></li>
+</ol>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><a class="reference internal" href="_images/image21.png"><img alt="image20" src="_images/image21.png" style="width: 1.54216in; height: 3.90581in;" /></a></p></th>
+<th class="head"><p><a class="reference internal" href="_images/image22.png"><img alt="image21" src="_images/image22.png" style="width: 1.99429in; height: 3.83336in;" /></a></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>*You can improve the overlay appearance by deactivating all channels
+and only keeping red, green, and blue (RGB) of one source, corresponding
+to C1, C2, and C3 above.</p>
+</section>
+<section id="iv-transfer-annotations">
+<h4>IV. Transfer annotations<a class="headerlink" href="#iv-transfer-annotations" title="Link to this heading"></a></h4>
+<p>In your QuPath project, follow these steps:</p>
+<ol class="arabic simple">
+<li><p>Open the image(s) where the annotations were saved.</p></li>
+<li><p>Go to File &gt; Export objects as GeoJSON… &gt; All objects &gt; Save. If you
+have annotations in multiple images, repeat.</p></li>
+</ol>
+<p><a class="reference internal" href="_images/image23.png"><img alt="image22" src="_images/image23.png" style="width: 3.77136in; height: 2.25031in;" /></a></p>
+<p>Pop up window:</p>
+<p><a class="reference internal" href="_images/image24.png"><img alt="image23" src="_images/image24.png" style="width: 6.26806in; height: 0.50139in;" /></a></p>
+<ol class="arabic simple">
+<li><p>Open the multi-channel overlay.</p></li>
+<li><p>File &gt; Import objects from file…</p></li>
+<li><p>Find the QuPath project directory &gt; select/Open “*.geojson” file. If
+you have annotations in multiple images, repeat.</p></li>
+<li><p>All annotations will now show in the overlay.</p></li>
+</ol>
+</section>
+<section id="v-train-and-predict-using-a-learning-model">
+<h4>V. Train and predict using a learning model<a class="headerlink" href="#v-train-and-predict-using-a-learning-model" title="Link to this heading"></a></h4>
+<p>In your QuPath project, follow these steps:</p>
+<ol class="arabic simple">
+<li><p>Go to Menu toolbar &gt; Classify &gt; Pixel classification &gt; Train pixel
+classifier…</p></li>
+<li><p>Select:</p>
+<ol class="arabic simple">
+<li><p>Classifier &gt; Random trees</p></li>
+<li><p>Resolution &gt; Moderate (default)</p></li>
+</ol>
+</li>
+</ol>
+<p><a class="reference internal" href="_images/image25.png"><img alt="image24" src="_images/image25.png" style="width: 6.26806in; height: 3.09722in;" /></a></p>
+<ol class="arabic simple">
+<li><p>Optional: Click Advanced options &gt; Reweight samples (tick on)</p></li>
+</ol>
+<p><a class="reference internal" href="_images/image26.png"><img alt="image25" src="_images/image26.png" style="width: 2.92554in; height: 2.86963in;" /></a></p>
+<ol class="arabic simple">
+<li><p>Click Live prediction. Be patient, the interface will freeze for a
+few seconds.</p></li>
+<li><p>The slider at the top allows you to control the transparency of the
+segmented map for quality control.</p></li>
+</ol>
+<p><a class="reference internal" href="_images/image27.png"><img alt="image26" src="_images/image27.png" style="width: 6.26806in; height: 0.27361in;" /></a></p>
+<ol class="arabic simple">
+<li><p>Since you are in Live mode, you can draw more annotations (see “II.
+Annotations”), right-click, and assign mineral class.</p>
+<ol class="arabic simple">
+<li><p>This will improve your map but freeze the interface* to allow the
+model re-train with the new pixels.</p></li>
+<li><p>If you do not like freezing, try deactivating Live prediction,
+annotating more grains (that you remember), and activating Live
+when you are done.</p></li>
+</ol>
+</li>
+<li><p>When satisfied, add a name for your classifier (“my_first_RT_model”)
+and save (red circle below).</p></li>
+<li><p>Click “Save prediction” (blue circle below)</p></li>
+<li><p>Find the QuPath project directory &gt; Save “my_first_RT_model.ome.tif”
+file.</p></li>
+</ol>
+<p><a class="reference internal" href="_images/image28.png"><img alt="image27" src="_images/image28.png" style="width: 6.26806in; height: 3.36875in;" /></a></p>
+<p>In summary, ‘Live’ segmentation tool has allowed you to rapidly classify
+pixels and learn more about your samples (beyond your annotation
+dataset). The technology highlights aspects in the whole-sample that
+were not sufficiently obvious for human vision and/or might have taken a
+very long to recognise and classify.</p>
+<p>Take home messages:</p>
+<ul class="simple">
+<li><p>This is an iterative process that uses hybrid-learning knowledge,
+colour, and texture.</p></li>
+<li><p>Since we are not using <em>resource-intensive</em> spectral library search
+(as in the SEM), we have more control over the output.</p></li>
+<li><p>With practice, you will focus on
+<a class="reference external" href="https://qupath.readthedocs.io/en/stable/docs/tutorials/pixel_classification.html">features</a>
+that are resolvable and know when to change the settings, use less
+channels, or stop annotating.</p></li>
+<li><p>With data acquisition and processing <em>consistency</em>, the trained model
+can be set up to predict new samples thanks to QuPath advanced
+scripting functionalities (<a class="reference external" href="https://qupath.readthedocs.io/en/stable/docs/advanced/command_line.html#passing-arguments-to-scripts">without
+interface</a>).</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="part-3">
+<h2>Part 3<a class="headerlink" href="#part-3" title="Link to this heading"></a></h2>
+<p>This part runs on Windows 11 and is given as extra learning material.</p>
+<section id="exercise-1-phase-interpretation">
+<h3>Exercise 1: Phase interpretation<a class="headerlink" href="#exercise-1-phase-interpretation" title="Link to this heading"></a></h3>
+<p>A user has segmented a sample for several purposes such as mineralogy
+(see Part 2B), texture (fractures, mineral zonation, etc.), or crystal
+orientation (using XPL-max index). The phase interpreter software was
+designed to read the predicted map (from the QuPath project directory)
+and output a custom mineral map where you can document and quantify the
+classified classes. It features:</p>
+<ul class="simple">
+<li><p>Editing of phase names into more accurate mineral/class (for
+publication)</p></li>
+<li><p>Basic sample display, area selection, and processing</p></li>
+<li><p>Image analysis for statistics (modal mineralogy, grain size
+distribution, association, accessibility) and measurements</p></li>
+<li><p>Saving partial analysis outputs into “trial” folders</p></li>
+</ul>
+<p>The requirements are:</p>
+<ul class="simple">
+<li><p>You have not modified the names of your map or classifier. They need
+to match.</p></li>
+<li><p>The map can be loaded in memory (future work will implement pyramids).</p></li>
+</ul>
+<p>On your Windows PC, follow these steps:</p>
+<ol class="arabic">
+<li><p>Open Phase interpreter</p></li>
+<li><ol class="arabic simple">
+<li><p>Define map</p></li>
+</ol>
+<ol class="arabic simple">
+<li><p>QuPath project &gt;
+“../Seminar_material/exercises_data/&lt;your-project-folder&gt;”</p></li>
+<li><p>Trained classifier &gt; “&lt;name-of-your-classifier&gt;”</p></li>
+<li><p>Background class &gt; “&lt;name-of-background-classes&gt;” (e.g., glass,
+background, holes, marker pen). List classes that should not
+appear in the output) separated by a <em>comma</em>.</p></li>
+<li><p>Click “Generate preview”</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="2">
+<li><p>Customise phase map</p></li>
+</ol>
+<ol class="arabic simple">
+<li><p>Originals (ranked) &gt; List of contained phases (equal to QuPath
+annotation names)</p></li>
+<li><p>Custom names &gt; List where you can edit phases as minerals</p></li>
+<li><p>Targets &gt; List where you can select the minerals to be shown
+(foreground)</p></li>
+<li><p>Region of interest (ROI) &gt; click “Draw” for defining a ROI. It
+lowers the computational cost.</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="3">
+<li><p>Choose the analysis</p></li>
+</ol>
+<ol class="arabic simple">
+<li><p>Trial tag &gt; “&lt;name-of-your-trial/ROI&gt;”</p></li>
+<li><p>Generate &gt; CTRL + click for selecting all (multiple analysis to be
+run)</p>
+<ol class="arabic simple">
+<li><p>Association index matrix requires a search radius and
+connectivity (‘four’ recommended).</p></li>
+<li><p>Grain size distribution requires defining “Pixel calibration”.</p></li>
+</ol>
+</li>
+<li><p>Click “Run”</p></li>
+</ol>
+</li>
+</ol>
+<p>You were successful if your input looks like this (not for the
+websterite sample):</p>
+<p><a class="reference internal" href="_images/image29.png"><img alt="image28" src="_images/image29.png" style="width: 5.20492in; height: 3.05399in;" /></a></p>
+<p>, and your output like this:</p>
+<p><a class="reference internal" href="_images/image30.png"><img alt="image29" src="_images/image30.png" style="width: 6.26806in; height: 3.04653in;" /></a></p>
+<p>, with several folders for each trial tag that was run.</p>
+<p>Finally, custom map outputs have applications such as doing new
+experiments on the interesting sample areas using new experiments and
+instruments that can “jump” between objects to acquire better spectra.
+There should be no need for brute force mapping (and saving) of all
+pixels if you can correlate techniques, e.g., ‘dot mapping’ (Hrstka et
+al., 2018).</p>
+</section>
+</section>
+<section id="benchmark">
+<h2>Benchmark:<a class="headerlink" href="#benchmark" title="Link to this heading"></a></h2>
+<p><strong>Garnet-websterite phase map.</strong> After Scanning electron microscopy –
+Backscattered electron and Energy dispersive spectroscopy (SEM-BSE/EDX)
+using default settings and spectral library search:</p>
+<p><a class="reference internal" href="_images/image31.png"><img alt="image30" src="_images/image31.png" style="width: 5.34328in; height: 8.38938in;" /></a></p>
+<p><strong>Colour legend</strong></p>
+<p><a class="reference internal" href="_images/image32.png"><img alt="image31" src="_images/image32.png" style="width: 2.92708in; height: 4.09375in;" /></a> <a class="reference internal" href="_images/image33.png"><img alt="image32" src="_images/image33.png" style="width: 2.93333in; height: 4.10069in;" /></a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="phase_interpreter.html" class="btn btn-neutral float-left" title="Phase Interpreter" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Marco Acevedo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

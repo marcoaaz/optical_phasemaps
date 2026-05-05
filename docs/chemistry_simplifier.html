@@ -1,0 +1,385 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chemistry Simplifier &mdash; Optical Phase Maps: Documentation  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/design-tabs.js?v=f930bc37"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Phase Interpreter" href="phase_interpreter.html" />
+    <link rel="prev" title="Cube Converter" href="cube_converter.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Optical Phase Maps: Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="image_analysis_pipeline.html">Image analysis pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_analysis_pipeline.html#introduction">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_analysis_pipeline.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_analysis_pipeline.html#citations">Citations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cube_converter.html">Cube Converter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cube_converter.html#polarised-microscopy-processor">Polarised microscopy processor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cube_converter.html#multi-modal-pyramid-generator">Multi-modal pyramid generator</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Chemistry Simplifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#image-processing">Image processing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#data-management">Data management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#image-pyramid-operations">Image pyramid operations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#analysis-definition">Analysis definition</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#input-list">Input list</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dimensionality-reduction">Dimensionality reduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#processed-volume">Processed volume</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#output-adjustments">Output adjustments</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#montage-operations">Montage operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#image-alignment">Image alignment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="phase_interpreter.html">Phase Interpreter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phase_interpreter.html#define-map">Define map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phase_interpreter.html#customise-phase-map">Customise phase map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phase_interpreter.html#image-analysis">Image analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline_workshop.html">Pipeline workshop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline_workshop.html#workshop-exercises">Workshop exercises</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Optical Phase Maps: Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Chemistry Simplifier</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/chemistry_simplifier.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="chemistry-simplifier">
+<span id="chap-repo2"></span><h1>Chemistry Simplifier<a class="headerlink" href="#chemistry-simplifier" title="Link to this heading"></a></h1>
+<p>Chemistry Simplifier software is dedicated to improve the understanding
+of micro-analytical maps from rock thin sections (mounts, pucks)
+obtained from analysing large sample surfaces (mm<span class="math notranslate nohighlight">\(^{2}\)</span>). The
+software dimensionally reduces and saves false-colour maps as single RGB
+images (TIF format). The main objective is documenting and discovering
+new, often cryptic, patterns within the mineral assemblage that are
+saved in a vast input image stack. This is possible by summarising the
+sample content into three dimensions (red-green-blue channels) to ease
+and speed up descriptions and characterisations. Therefore, the software
+gives people and AI-enabled software a kick start on high-level
+information about the rock (veining, fabric, matrix) and minerals
+(chemical zonation, resorption, diffusion pattern, sector zoning) that
+often require browsing the maps for hundreds of hours in only a few
+minutes. For instance, an SEM-EDX image (10’000x20’000 px) with 100
+chemical elements (characteristic X-ray lines) can be processed in  15
+minutes.</p>
+<p>The user can import chemical maps as single channel images after custom
+search (in most formats), selection, and sorting during the Analysis
+Definition step. The available models are the Principal Component
+Analysis (PCA), Deep Sparse Autoencoder (DSA), and the Uniform Manifold
+Approximation and Projection (UMAP). Each have strengths and weaknesses
+that complement each other and depend on the sample ‘composition’,
+making the software a good choice to study high-resolution and highly
+dimensional geochemical maps and other data types (any
+microscopy/spectroscopy technique, satellite imagery, art paintings,
+etc.) The results are saved in a folder hierarchy to ease saving output
+trials with different tags and metadata. This allows remembering the
+processing parameters and re-loading previous unsupervised learning
+models to enable inter-sample scalability (same parameters applied to
+new samples).</p>
+<p>After extensive trialling on already well-characterised samples, I
+demonstrated that:</p>
+<ul class="simple">
+<li><p>PCA can more robust to noisy and/or artefact image inputs than DSA.
+Therefore, PCA is the default choice (for initial assessment and image
+registration).</p></li>
+<li><p>PCA tends to highlight mineralogy while DSA is attentive to mineralogy
+and their compositional zonation within crystals.</p></li>
+<li><p>UMAP is good at distinguishing mineralogy and superior at denoising
+the output (grain/zone boundaries) than PCA because it is a non-linear
+method.</p></li>
+<li><p>UMAP slows down when fitting the manifold to millions of pixels,
+making it slower than PCA and DSA.</p></li>
+</ul>
+<p>The image alignment section requires control points that have been
+placed manually using ImageJ BigWarp plugin (Bogovic et al., 2016). The
+plugin allows exporting a ’landmarks.csv’ file containing the ID and
+locations (X, Y) of the placemarks accross the moving and fixed images
+(at least 4 points are required to fit the transform models). This
+repository contains an example CSV to show the user for required format
+(see ’landmarks_bse_xpl.csv’).</p>
+</section>
+<section id="image-processing">
+<h1>Image processing<a class="headerlink" href="#image-processing" title="Link to this heading"></a></h1>
+<section id="data-management">
+<h2>Data management<a class="headerlink" href="#data-management" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Input: Folder path containing the input images. Browse shows both
+folders and files and allows selecting a specific folder.</p></li>
+<li><p>Image format: File path extension of the input images.</p></li>
+<li><p>Search (optional): Python regular expression to parse the experimental
+files required. Use when files have a particular prefix/suffix.</p></li>
+<li><p>Output: Name of the results folder. We call them running trials after
+defining the Image Processing step. It is generated when refreshing
+the application. After running the application, the output folder
+contains the following metadata, intermediate image folders, and
+outputs:</p>
+<ul>
+<li><p>: Linear, natural log, and original pyramidal stacks (BigTiff
+format).</p></li>
+<li><p>: Montages of every input saved using the chosen settings (contrast,
+colourmaps).</p></li>
+<li><p>: Tag sub-folder outputs.</p></li>
+<li><p>descriptiveStats.csv: Statistics of the input images and calculated
+min/max boundaries for reproducing the colour schema.</p></li>
+<li><p>tileConfiguration.csv: Bounding boxes of every tile to be exacted
+from the BigTiffs</p></li>
+</ul>
+</li>
+<li><p>Output sub-folder: Name of the iteration folder. We call them running
+tags after defining the Analysis and Output adjustments. It is
+generated when running the application. It is found as</p>
+<ul>
+<li><p>input_run.csv: List of chemical maps used for future reference.</p></li>
+<li><p>{model}_model.{extension}: Dimensionality reduction models saved in
+different formats like PKL (for PCA), XML (for UMAP) and TAR (for
+DSA).</p></li>
+<li><p>{model}_tiles: Transformed tiles ready for stitching.</p></li>
+<li><p>montage_{model}: outputs saved as float and uint8 images (flat TIF)
+for opening downstream.</p></li>
+<li><p>Descriptive stats of the montages (CSV): Metadata required for
+reproducing the colour schema.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="image-pyramid-operations">
+<h2>Image pyramid operations<a class="headerlink" href="#image-pyramid-operations" title="Link to this heading"></a></h2>
+<p>An image pyramid is a hierarchical representation of a very large
+original image at different spatial scales. This format is required in
+modern image analysis software for speeding up processing.</p>
+<ul class="simple">
+<li><p>Tile size: Image size (pixels) given to the squared image pyramid
+tiles.</p></li>
+<li><p>Bit-depth scaling: Check boxes of the first pixel re-scaling
+operation. The image is scaled within min/max bounds to vary between 0
+and 1 (float32). It can be linear (arithmetic operation), natural
+logarithm (algebraic operation), and original (no scaling applied).</p></li>
+<li><p>Contrast 1: The min/max bounds above are found using percentiles. The
+percentage to be capped at the top and bottom of an input montage
+channel histogram to reduce noise and outliers pixels.</p></li>
+<li><p>Median filter: Sliding window or kernel size (3x3 px) for calculating
+a median value that will replace the neighborhood center pixel. It
+eliminates salt-and-pepper noise while preserving edges.</p></li>
+<li><p>Normalisation: Second pixel re-scaling operation to fit the 0-1 range.</p>
+<ul>
+<li><p>Normalisation (Min-Max scaling) subtracts the minimum on the whole
+image and divides by the range assuming the data have similar
+magnitudes.</p></li>
+<li><p>Standarisation subtracts the mean and divides by the standard
+deviation assuming the data have different magnitudes and follow
+Gaussian distributions.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="analysis-definition">
+<h1>Analysis definition<a class="headerlink" href="#analysis-definition" title="Link to this heading"></a></h1>
+<section id="input-list">
+<h2>Input list<a class="headerlink" href="#input-list" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Scaling: Selection of the first pixel re-scaling to be processed
+further. We can only use log scale if it has been pre-computed.</p></li>
+<li><p>Selected chemical maps: Custom list of file paths of the input images.
+They can also be in different folders. After running, the metadata
+saves them in exactly the same order (see <code class="docutils literal notranslate"><span class="pre">inputs_run.csv</span></code>)</p></li>
+<li><p>Refresh button: Search the images summoned in the Image Processing
+step.</p></li>
+<li><p>Add, Remove, Clear all buttons: Customise the image list.</p></li>
+</ul>
+</section>
+<section id="dimensionality-reduction">
+<h2>Dimensionality reduction<a class="headerlink" href="#dimensionality-reduction" title="Link to this heading"></a></h2>
+<p>A transformation of data (pixel channels) from a high-dimensional space
+into a low-dimensional space (representation) minimising the loss of
+information. We use the 3D embedded space to represent red, green, and
+blue colours in the image space.</p>
+<p>The checkbox allow enabling the desired representation for the tag
+folder. The model (hyper-)parameters can be adjusted clicking the
+gearbox buttons. Optionally, previously saved models be retrieved from a
+previous iteration (tag) using the ‘…’ button or filling the path text
+boxes on the corresponding model.</p>
+<ul class="simple">
+<li><p><strong>Principal component analysis (PCA):</strong> Factorisation method to obtain
+the rotation and translation operations required to represent the data
+in the space of maximum variability (orthogonal principal component
+axes) using a combination of eigen-vectors calculated from the input
+variables.</p></li>
+<li><p><strong>Deep sparse autoencoder (DSA):</strong> Neural network model that learns a
+meaningful representation of the input data. It has symmetrical,
+fully-connected layers where the input and output nodes are identical,
+surrounding a central bottleneck (3 channels). A cost regularisation
+term centers the batch nodes around a normally distributed value (KL
+sparsity target <span class="math notranslate nohighlight">\(\rho \approx 0.5\)</span>). This ensures half of the
+nodes are deactivated (moderately dense representation) and provides
+sufficient colour contrast if the learning rate is not too high (see
+<code class="docutils literal notranslate"><span class="pre">loss_plot.png</span></code>).</p></li>
+<li><p><strong>Uniform manifold approximation and projection (UMAP):</strong> Graph-based
+method that preserves both local and global data structure. It uses
+fuzzy topology to create a high-dimensional node graph and iteratively
+optimizes a low-dimensional layout (embedding) to reproduce that
+structure. The local connectivity of the data points is quantified by
+the number of neighbours and the distance metric (Euclidean).</p></li>
+</ul>
+<section id="processed-volume">
+<h3>Processed volume<a class="headerlink" href="#processed-volume" title="Link to this heading"></a></h3>
+<p>A user needs to have results as fast as possible or in a few iterations
+only. This section allows fast turnaround by reducing the computational
+load with a trade-off on the quality of image representation. This
+feature was inspired by QuPath software.</p>
+<ul class="simple">
+<li><p>Downsampling: Re-sizing factor of the input and output images.</p>
+<ul>
+<li><p>Scale: Factor controlling the input image size to fit or train the
+models.</p></li>
+<li><p>Resolution: Factor controlling the output image size that the models
+will have to predict.</p></li>
+</ul>
+</li>
+<li><p>Subsampling: Randomly sampled pixels are obtained from the downsampled
+image. The spin boxes (0-1) determine the fraction of pixels to
+factorise (PCA), connect (UMAP), and fit (DSA) the models. Pixels with
+a constant value across all channels are ignored (background).</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="output-adjustments">
+<h1>Output adjustments<a class="headerlink" href="#output-adjustments" title="Link to this heading"></a></h1>
+<p>Colour (RGB) and image alignment modifications on the dimensionally
+reduced montages.</p>
+<p>The final option is the number of cores to use when running the parallel
+prediction of the underlying image pyramid tiles.</p>
+<section id="montage-operations">
+<h2>Montage operations<a class="headerlink" href="#montage-operations" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Recoloured chemical maps: Whether or not to save the re-scaled images
+into recoloured maps.</p></li>
+<li><p>Colormap: Selection of heatmap to recolour those maps following
+Python.</p></li>
+<li><p>Contrast 2: The percentage to be capped at the top and bottom of an
+output montage channel histogram to reduce noise and outliers pixels.</p></li>
+<li><p>Flip upside down: Whether or not to flip the image vertically in case
+the image was saved in a different orientation after the instrument
+acquisition.</p></li>
+</ul>
+</section>
+<section id="image-alignment">
+<h2>Image alignment<a class="headerlink" href="#image-alignment" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Control points: File path to the landmarks file (CSV) saved from
+ImageJ BigWarp plugin.</p></li>
+<li><p>Moving images: Selection to include the recoloured, dimensionaly
+reduced, and original images in the image aligning loop.</p></li>
+<li><p>Moving image (optional): Additional image that needs to be included in
+the loop. For example, if all input images are chemical images. The
+optional image could be the individual Backscattered Electron image
+(BSE) that represents density (not chemistry).</p></li>
+<li><p>Fixed image: File path to the fixed (reference) image in the image
+registration process.</p></li>
+<li><p>Target WxH: Information about the size of the fixed image. If the
+fixed image is missing, you only need to remember the original size.</p></li>
+<li><p>Transformation: Selection of the rigid (Affine, Similarity) or
+non-rigid (Thin-plate spline) image transform for the inverse
+estimation.</p></li>
+<li><p>Interpolation: Selection of the pixel value interpolation method to
+estimate the registered moving image pixels. It can be nearest
+neighbour (original values), bi-linear, or bi-cubic interpolations, in
+order of increasing computation speeds and spatial resolution detail.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cube_converter.html" class="btn btn-neutral float-left" title="Cube Converter" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="phase_interpreter.html" class="btn btn-neutral float-right" title="Phase Interpreter" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Marco Acevedo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

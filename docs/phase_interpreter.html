@@ -1,0 +1,316 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Phase Interpreter &mdash; Optical Phase Maps: Documentation  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/design-tabs.js?v=f930bc37"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Pipeline workshop" href="pipeline_workshop.html" />
+    <link rel="prev" title="Chemistry Simplifier" href="chemistry_simplifier.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Optical Phase Maps: Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="image_analysis_pipeline.html">Image analysis pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_analysis_pipeline.html#introduction">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_analysis_pipeline.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_analysis_pipeline.html#citations">Citations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cube_converter.html">Cube Converter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cube_converter.html#polarised-microscopy-processor">Polarised microscopy processor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cube_converter.html#multi-modal-pyramid-generator">Multi-modal pyramid generator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chemistry_simplifier.html">Chemistry Simplifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chemistry_simplifier.html#image-processing">Image processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chemistry_simplifier.html#analysis-definition">Analysis definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chemistry_simplifier.html#output-adjustments">Output adjustments</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Phase Interpreter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#define-map">Define map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#customise-phase-map">Customise phase map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#image-analysis">Image analysis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#roi-annotation-tool">ROI annotation tool</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline_workshop.html">Pipeline workshop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline_workshop.html#workshop-exercises">Workshop exercises</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Optical Phase Maps: Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Phase Interpreter</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/phase_interpreter.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="phase-interpreter">
+<span id="chap-repo3"></span><h1>Phase Interpreter<a class="headerlink" href="#phase-interpreter" title="Link to this heading"></a></h1>
+<p>Phase Interpreter software is able to read rock phase maps saved from
+other programs (QuPath, TIMA Tescan) and allow generating basic image
+analysis outcomes via user interaction (editing labels, drawing regions
+of interests). The user can effectively convert a phase map into a more
+useful mineral map for any particular assemblage (e.g., phase/melt
+reaction, metamorphic assemblage, high pressure-temperature experimental
+product). The analysis includes building a map and calculating modal
+abundances, associations, grain sizes, and exporting those maps to other
+software for spectral interrogation (e.g., GeoPIXE). It generates a
+structured output folder with files corresponding to the selected
+analyses for each out ’trial tag’ (see interface) to support findings
+and encourage future (or retrospective) reuse of research data (thin
+sections, polished blocks, resin mounts, etc.) There also is even a
+script (see repository) to send them to Iolite v4.</p>
+<p>The current version supports input phase maps produced in:</p>
+<ul class="simple">
+<li><p>QuPath software (Bankhead et al., 2017) using the pixel classifier
+tool.</p></li>
+<li><p>TIMA software (TESCAN) mineral libration maps exported to MinDIF
+format.</p></li>
+</ul>
+<p>We call the analysis basic because in the current version, we still work
+with a few mineral ‘masks’ not with thousands of ‘grain masks’. A future
+release will incorporate object segmentation label maps (after Cube
+Converter edges subtraction) support to make the grain analysis more
+meaningful.</p>
+</section>
+<section id="define-map">
+<h1>Define map<a class="headerlink" href="#define-map" title="Link to this heading"></a></h1>
+<p>The user needs to describe what the phase map contains and how it is
+constituted and oriented. The main aim is to define what is the map
+foreground (rock) and background (fringes, epoxy, C-coating).</p>
+<ul class="simple">
+<li><p>Input path: Disk location of the phase map files. A new output
+directory will be saved within the containing folder of the input
+path.</p></li>
+<li><p>Project type: Selection of phase map type:</p>
+<ul>
+<li><p>QuPath v0.7: File located within QuPath project. It is the labelled
+map predicted and saved (OME-TIFF) using the Pixel Classifier tool.
+After running the application, the output folder has the same name
+as the corresponding classifier that you trained in QuPath.</p></li>
+<li><p>TIMA Tescan v2.11.1: Sub-folder located within a MinDIF export
+folder. This sub-folder is usually named with a serial name and sits
+next to a data.sqlite3 file. If many samples were scanned in the
+same TIMA project, the folder will contain many sub-folders. You
+will need to be familiar with the one you need. After running the
+application, the output folder can be .</p></li>
+</ul>
+</li>
+<li><p>Background categories: Comma-separated list of the original names of
+the phases that are surrounding the sample and need to be ignored. For
+example, you can have a Background, [Unclassified], and epoxy
+categories around the sample.</p></li>
+<li><p>Foreground dilation: Sliding window (kernel) size (1x1 to 60x60 px) to
+smooth out and dilate the detected foreground. This option heals gaps
+in your map due to background detection. Do not choose phases within
+the foreground. The option is useful if your sample was broken in two
+pieces making your phase map split two taking only the largest one
+(default behavior).</p></li>
+<li><p>Map rotation: Custom rotation transformation (0, 90, 180, 270). Most
+phase maps are vertical but you want them to fit in your screen or
+pre-align them with other experiments (default= 90).</p></li>
+<li><p>Generate preview: Button to produce a preview of the phase map and
+modal mineralogy. The preview will also save files within the new
+folder created corresponding to:</p>
+<ul>
+<li><p>Foreground image: sectionMask.tif of the detected foreground</p></li>
+<li><p>Labelled images: phasemap_label_full.tif, phasemap_target.tif</p></li>
+<li><p>RGB maps: phasemap_target_RGB.tif, phasemap_target_legend.tif</p></li>
+<li><p>Species found: species.xlsx containing the ranked (by number of
+pixels) phases with their new preliminary label numbers and original
+RGB colour triplets.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="customise-phase-map">
+<h1>Customise phase map<a class="headerlink" href="#customise-phase-map" title="Link to this heading"></a></h1>
+<p>This section allows iterative improvement of the analysis.</p>
+<ul class="simple">
+<li><p>Originals (ranked): Comma-separated list of phases that were found in
+the original map after reading the corresponding metadata.</p></li>
+<li><p>Custom names: User input to rename the list above in geologically
+meaningful way (mineralogy, phenocryst, matrix, unknowns).</p></li>
+<li><p>Select analysis targets: Narrowed down user list to perform any
+further analysis on the rock. It must follow the Custom names but it
+can be sorted differently for downstream analysis. You can exclude
+artefact phases as well such as holes, epoxy bubbles, hair, and marker
+drawings.</p></li>
+</ul>
+</section>
+<section id="image-analysis">
+<h1>Image analysis<a class="headerlink" href="#image-analysis" title="Link to this heading"></a></h1>
+<p>Extraction of high-level information about the mineral map.</p>
+<ul class="simple">
+<li><p>Output folder tag: New sub-folder name (e.g., trial_{number})
+containing the analysis results.</p></li>
+<li><p>Region of interest (ROI): Buttons to begin drawing or clearing all
+ROIs. If skipped or cleared out, the ROI will be the full area of the
+map taking longer to process. The interface for drawing ROIs is
+described in the next sub-section.</p></li>
+<li><p>Results sorting: Select how the minerals will be shown and sorted in
+the outputs.</p>
+<ul>
+<li><p>Selection: Selected analysis targets in the defined order.
+Consistent across different ROIs.</p></li>
+<li><p>Non-zero selection (default): ‘Selection’ with only minerals more
+abundant than one pixel (to save space in the plots).</p></li>
+<li><p>Ranked: ‘Non-zero selection’ ranked by abundance and ignoring the
+defined order.</p></li>
+</ul>
+</li>
+<li><p>User selection: Selectable lists of image analysis (generate) and
+export options.</p>
+<ul>
+<li><p>Targets map and modal abundances: Similar to the previous outputs
+but constrained to the ROI.</p></li>
+<li><p>Association index matrix and accessibility maps: Plots (and tables)
+showing the frequency of pixel contacts between different mineral
+categories.</p>
+<ul>
+<li><p>Search radius (px): Sliding window radius around the central pixel
+to configure a square kernel (n_pixels x n_pixels). Increase the
+radius when the input mineral map is noisy to ignore low-frequency
+phase contacts.</p></li>
+<li><p>Connectivity: Lateral pixel connectivity for the window search.
+‘Four’ searches in the cardinal directions while ‘Eight’ includes
+searching in diagonal directions. Using Eight is more
+computationally expensive and for phases with very small grain
+size, this can bias the results if the phases are in diagonal
+contact.</p></li>
+</ul>
+</li>
+<li><p>Grain measurements and size distribution:</p>
+<ul>
+<li><p>Pixel calibration <span class="math notranslate nohighlight">\(\mu\)</span>m/px): Pixel size of the input map.
+After QuPath, the map is usually half the dimensions of the
+original images in the image stack when prediction was done at
+Very High=2 (not Full) spatial resolution. Today, the information
+about the pixel calibration is not connected upstream in the
+pipeline (future work).</p></li>
+<li><p>Top mesh (<span class="math notranslate nohighlight">\(\mu\)</span>m): The grain size distribution (GSD) of
+each mineral is calculated in equal intervals from a bottom to a
+top mesh value. This is the largest value of the digital mesh
+aperture.</p></li>
+<li><p>Bottom mesh (px): The minimum mesh used for GSD. It makes sense to
+define it in pixels since we visualise (measure) discretisation
+effects on fine-grained target minerals.</p></li>
+</ul>
+</li>
+<li><p>Mask export: Whether or not to export the mineral masks to another
+software. Select the export format in the adjacent selectable list
+on the right-hand side. So far, the list includes CSIRO GeoPIXE
+software Q-vectors. These need to be retrieved in the supercomputer
+for mask spectral interrogation that allows finding new X-ray peaks.</p></li>
+</ul>
+</li>
+</ul>
+<section id="roi-annotation-tool">
+<h2>ROI annotation tool<a class="headerlink" href="#roi-annotation-tool" title="Link to this heading"></a></h2>
+<p>This window opens when clicking the ‘Draw ROI’ button above and is
+designed to annotate the rock map highlighting a specific texture
+pattern (different assemblage, clasts, glomerocrysts) within the map.
+The annotation menu on the right-hand side has a list of annotations
+that can be renamed and saved as checkpoints for further analyses. The
+annotation polygons are looped through the image analysis process on the
+all selected analyses.</p>
+<ul class="simple">
+<li><p>Type: Select the next annotation type as freehand, polygon, rectangle
+or circle.</p></li>
+<li><p>List: Annotations will appear here according to the order they are
+drawn. The list allows renaming and sorting (gray up/down arrows) the
+annotations manually.</p></li>
+<li><p>Customising buttons: Customise the list adding (+), deleting (X) or
+clearing all (trash bin) annotations.</p></li>
+<li><p>Save &amp; exit button: Save the annotations checkpoint to a file (MAT)
+within the Tag folder (parent of all annotations). This loads the
+annotations into run the application.</p></li>
+<li><p>Load progress button: Load a previous annotation checkpoint and add
+them to the list.</p></li>
+<li><p>Copy metadata button: Copy some relevant information about the mineral
+map to remember where you saved it.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="chemistry_simplifier.html" class="btn btn-neutral float-left" title="Chemistry Simplifier" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pipeline_workshop.html" class="btn btn-neutral float-right" title="Pipeline workshop" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Marco Acevedo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

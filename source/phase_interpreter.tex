@@ -1,0 +1,100 @@
+\section{Phase Interpreter}
+\label{chap:repo3}
+	
+	Phase Interpreter software is able to read rock phase maps saved from other programs (QuPath, TIMA Tescan) and allow generating basic image analysis outcomes via user interaction (editing labels, drawing regions of interests). The user can effectively convert a phase map into a more useful mineral map for any particular assemblage (e.g., phase/melt reaction, metamorphic assemblage, high pressure-temperature experimental product). The analysis includes building a map and calculating modal abundances, associations, grain sizes, and exporting those maps to other software for spectral interrogation (e.g., GeoPIXE). It generates a structured output folder with files corresponding to the selected analyses for each out 'trial tag' (see interface) to support findings and encourage future (or retrospective) reuse of research data (thin sections, polished blocks, resin mounts, etc.) There also is even a script (see repository) to send them to Iolite v4. 
+	
+	The current version supports input phase maps produced in:
+	\begin{itemize}		
+		\item QuPath software (Bankhead et al., 2017) using the pixel classifier tool. 		
+		\item TIMA software (TESCAN) mineral libration maps exported to MinDIF format. 
+	\end{itemize}
+	
+	We call the analysis basic because in the current version, we still work with a few mineral `masks' not with thousands of `grain masks'. A future release will incorporate object segmentation label maps (after Cube Converter edges subtraction) support to make the grain analysis more meaningful. 
+	
+	\section{Define map}
+	
+	The user needs to describe what the phase map contains and how it is constituted and oriented. The main aim is to define what is the map foreground (rock) and background (fringes, epoxy, C-coating).
+	
+		\begin{itemize}
+		
+		\item  Input path: Disk location of the phase map files. A new output directory will be saved within the containing folder of the input path.
+		\item  Project type: Selection of phase map type:
+			\begin{itemize}				
+				\item QuPath v0.7: File located within QuPath project. It is the labelled map predicted and saved (OME-TIFF) using the Pixel Classifier tool. After running the application, the output folder has the same name as the corresponding classifier that you trained in QuPath.
+				
+				\item TIMA Tescan v2.11.1: Sub-folder located within a MinDIF export folder. This sub-folder is usually named with a serial name and sits next to a data.sqlite3 file. If many samples were scanned in the same TIMA project, the folder will contain many sub-folders. You will need to be familiar with the one you need. After running the application, the output folder can be  \path{..\minDIF_processing\7802893c-1432-4859-8305-db91b3f2d863\phasemap_reconstruction}.
+				
+			\end{itemize}
+		
+		\item  Background categories: Comma-separated list of the original names of the phases that are surrounding the sample and need to be ignored. For example, you can have a Background, [Unclassified], and epoxy categories around the sample.
+		
+		\item  Foreground dilation: Sliding window (kernel) size (1x1 to 60x60 px) to smooth out and dilate the detected foreground. This option heals gaps in your map due to background detection. Do not choose phases within the foreground. The option is useful if your sample was broken in two pieces making your phase map split two taking only the largest one (default behavior). 
+		
+		\item  Map rotation: Custom rotation transformation (0, 90, 180, 270). Most phase maps are vertical but you want them to fit in your screen or pre-align them with other experiments (default= 90).
+		
+		\item Generate preview: Button to produce a preview of the phase map and modal mineralogy. The preview will also save files within the new folder created corresponding to:
+			\begin{itemize}				
+				\item Foreground image: sectionMask.tif of the detected foreground
+				\item Labelled images: phasemap\_label\_full.tif, phasemap\_target.tif
+				\item RGB maps: phasemap\_target\_RGB.tif, phasemap\_target\_legend.tif
+				\item Species found: species.xlsx containing the ranked (by number of pixels) phases with their new preliminary label numbers and original RGB colour triplets.
+				
+			\end{itemize}
+		\end{itemize}
+	
+	\section{Customise phase map}
+	
+	This section allows iterative improvement of the analysis.
+		
+		\begin{itemize}
+			
+			\item Originals (ranked): Comma-separated list of phases that were found in the original map after reading the corresponding metadata.
+			\item Custom names: User input to rename the list above in geologically meaningful way (mineralogy, phenocryst, matrix, unknowns).
+			\item Select analysis targets: Narrowed down user list to perform any further analysis on the rock. It must follow the Custom names but it can be sorted differently for downstream analysis. You can exclude artefact phases as well such as holes, epoxy bubbles, hair, and marker drawings.
+			
+		\end{itemize}
+		
+	\section{Image analysis}
+	
+	Extraction of high-level information about the mineral map.
+		
+		\begin{itemize}
+			
+			\item Output folder tag: New sub-folder name (e.g., trial\_\{number\}) containing the analysis results.
+			\item Region of interest (ROI): Buttons to begin drawing or clearing all ROIs. If skipped or cleared out, the ROI will be the full area of the map taking longer to process. The interface for drawing ROIs is described in the next sub-section.
+			\item Results sorting: Select how the minerals will be shown and sorted in the outputs. 
+				\begin{itemize}
+					\item Selection: Selected analysis targets in the defined order. Consistent across different ROIs.
+					\item Non-zero selection (default): `Selection' with only minerals more abundant than one pixel (to save space in the plots). 
+					\item Ranked: `Non-zero selection' ranked by abundance and ignoring the defined order.
+				\end{itemize}
+			\item User selection: Selectable lists of image analysis (generate) and export options.
+				\begin{itemize}
+					\item Targets map and modal abundances:	Similar to the previous outputs but constrained to the ROI.
+					\item Association index matrix and accessibility maps: Plots (and tables) showing the frequency of pixel contacts between different mineral categories.
+						\begin{itemize}
+							\item Search radius (px): Sliding window radius around the central pixel to configure a square kernel (n\_pixels x n\_pixels). Increase the radius when the input mineral map is noisy to ignore low-frequency phase contacts.
+							\item Connectivity: Lateral pixel connectivity for the window search. `Four' searches in the cardinal directions while `Eight' includes searching in diagonal directions. Using Eight is more computationally expensive and for phases with very small grain size, this can bias the results if the phases are in diagonal contact.
+						\end{itemize}
+					\item Grain measurements and size distribution:	
+						\begin{itemize}
+							\item Pixel calibration $\mu$m/px): Pixel size of the input map. After QuPath, the map is usually half the dimensions of the original images in the image stack when prediction was done at Very High=2  (not Full) spatial resolution. Today, the information about the pixel calibration is not connected upstream in the pipeline (future work).
+							\item Top mesh ($\mu$m): The grain size distribution (GSD) of each mineral is calculated in equal intervals from a bottom to a top mesh value. This is the largest value of the digital mesh aperture. 
+							\item Bottom mesh (px): The minimum mesh used for GSD. It makes sense to define it in pixels since we visualise (measure) discretisation effects on fine-grained target minerals. 
+						\end{itemize}
+					\item Mask export: Whether or not to export the mineral masks to another software. Select the export format in the adjacent selectable list on the right-hand side. So far, the list includes CSIRO GeoPIXE software Q-vectors. These need to be retrieved in the supercomputer for mask spectral interrogation that allows finding new X-ray peaks.
+				\end{itemize}
+		\end{itemize}
+	
+	\subsection{ROI annotation tool}
+	
+	This window opens when clicking the `Draw ROI' button above and is designed to annotate the rock map highlighting a specific texture pattern (different assemblage, clasts, glomerocrysts) within the map. The annotation menu on the right-hand side has a list of annotations that can be renamed and saved as checkpoints for further analyses. The annotation polygons are looped through the image analysis process on the all selected analyses. 
+	
+	\begin{itemize}
+		\item Type: Select the next annotation type as freehand, polygon, rectangle or circle.
+		\item List: Annotations will appear here according to the order they are drawn. The list allows renaming and sorting (gray up/down arrows) the annotations manually.
+		\item Customising buttons: Customise the list adding (+), deleting (X) or clearing all (trash bin) annotations.
+		\item Save \& exit button: Save the annotations checkpoint to a file (MAT) within the Tag folder (parent of all annotations). This loads the annotations into run the application.
+		\item Load progress button: Load a previous annotation checkpoint and add them to the list.
+		\item Copy metadata button: Copy some relevant information about the mineral map to remember where you saved it.
+	\end{itemize}

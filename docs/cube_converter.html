@@ -1,0 +1,287 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cube Converter &mdash; Optical Phase Maps: Documentation  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/design-tabs.js?v=f930bc37"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Chemistry Simplifier" href="chemistry_simplifier.html" />
+    <link rel="prev" title="Image analysis pipeline" href="image_analysis_pipeline.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Optical Phase Maps: Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="image_analysis_pipeline.html">Image analysis pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_analysis_pipeline.html#introduction">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_analysis_pipeline.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_analysis_pipeline.html#citations">Citations</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Cube Converter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#polarised-microscopy-processor">Polarised microscopy processor</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#data-management">Data management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#optical-image-processing">Optical image processing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#multi-modal-pyramid-generator">Multi-modal pyramid generator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#configure-z-stack">Configure Z-stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exportation-mode">Exportation mode</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="chemistry_simplifier.html">Chemistry Simplifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chemistry_simplifier.html#image-processing">Image processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chemistry_simplifier.html#analysis-definition">Analysis definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chemistry_simplifier.html#output-adjustments">Output adjustments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phase_interpreter.html">Phase Interpreter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phase_interpreter.html#define-map">Define map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phase_interpreter.html#customise-phase-map">Customise phase map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phase_interpreter.html#image-analysis">Image analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline_workshop.html">Pipeline workshop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline_workshop.html#workshop-exercises">Workshop exercises</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Optical Phase Maps: Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Cube Converter</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/cube_converter.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cube-converter">
+<span id="chap-repo1"></span><h1>Cube Converter<a class="headerlink" href="#cube-converter" title="Link to this heading"></a></h1>
+<p>Cube Converter software focuses on processing whole-slide images from 2D
+polarised microscopy imaging (PLI) in plane- (PPL) and cross-polarised
+(XPL) light using transmitted ray tracing as well as reflected light.
+The user can extract the experimental metadata and export the original
+maps and use them to calculate colour (via descriptive statistics) and
+morphological features (edges) from rock mineral grains observed in thin
+sections. The second part of the software can produce multi-modal image
+stacks for opening them in other software as z-stacks or individual
+images. Locally, the output intermediate/final images are saved in a
+structured folder sequence for each input VSI file input (original scans
+and ray tracing images).</p>
+<p>The tool can represent a set of multi-angle polarised images
+(plane-polarised (PPL) pleochroism and cross-polarised (XPL)
+birefringence) as summary “ray tracing” (descriptive statistics: max,
+min, std, mean, index of max/min) images. For example, XPL-max looks the
+same as XPL circular polarisation without having to install extra
+optical components in your microscope. These images are friendlier for
+pixel/object classification/segmentation tasks due to the homogenisation
+of colours regarless of “virtual” stage rotation.</p>
+<p>The current version only supports Evident VS200 slide scanner using the
+acquisition routines defined by Acevedo Zamora and Kamber (2023) in
+Evident ASW software. Since we adopted the OME-TIFF format (BioFormats),
+all outputs can be read in most bioinformatics (QuPath, OMERO Server)
+and microscopy software and the Evident software suite (up to a 20 GB
+limit). I acknowledge that most users will not have a VS200 slide
+scanner and our data acquisition routines. Currently, these are
+available in two laboratories in Queensland, see (CARF, Centre for
+Microscopy and Microanalysis). Please, let me know if you know of
+additional locations with geoscience focus or if you would like to try
+the technology to a different field. Under a scientific collaboration
+project, I could visit your laboratory and make your scanner compatible
+with Cube converter software.</p>
+</section>
+<section id="polarised-microscopy-processor">
+<h1>Polarised microscopy processor<a class="headerlink" href="#polarised-microscopy-processor" title="Link to this heading"></a></h1>
+<section id="data-management">
+<h2>Data management<a class="headerlink" href="#data-management" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Output directory (optional): Select the output folder clicking the
+Browse Folder button. If no name is provided, the default is where the
+last selected VSI image lived. This option allows selecting a
+different destination disk to reduce processing time due to data
+friction.</p></li>
+<li><p>Input optical scans: List of scan VSI file paths for processing. We
+call them Data Trees because they contain the scans a series of layers
+referenced to the same metadata (header) within the file. The list is
+meant for overnight processing of similar data acquisition
+experiments.</p></li>
+<li><p>Add, Remove, Clear all buttons: Options to customise list. The list
+can also be arranged in a particular order (grey up/down arrows).</p></li>
+<li><p>Pyramid: Selected level from the pyramid representation of the image.
+Level 0 is the full resolution scan, level 1 is half the Width/Height
+(25% file size), level 2 is a quarter (6.25%), and so on. Processing
+will take place for longer with a smaller pyramid level.</p></li>
+<li><p>Tile size: Pyramids are made of squared tiles (512x512 px). Smaller
+tiles will produce a much larger number of file input/output
+operations but release RAM memory resources (for preventing overload).
+If you PC has low RAM, use smaller tiles and wait longer. Note that
+your disk must be fast to support more tiles.</p></li>
+</ul>
+</section>
+<section id="optical-image-processing">
+<h2>Optical image processing<a class="headerlink" href="#optical-image-processing" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Montage outputs: Select the original scans within the VSI file to
+export as OME-TIFF pyramids. If a microscopy observation mode
+(modality) is not available, an error will be shown when running the
+processing loop through the input list.</p></li>
+<li><p>Calculated montage outputs: Whether or not you want to do Ray tracing
+and what modality you require from transmitted light data. PPL colours
+represent pleochroism and XPL represent interference colours (light
+wave retardation).</p>
+<ul>
+<li><p>Wave descriptive statistics: Select outputs between maximum,
+minimum, mean, median, and standard deviation. They have different
+applications.</p></li>
+<li><p>Spectral and morphological analysis: Select outputs between phase
+(‘virtual stage rotation’ maximum and minimum index), modulation
+(red= transmittance, green= phase, blue= retardance), and mineral
+grain boundaries (edges).</p>
+<ul>
+<li><p>The modulation image corresponds to Step 2 of the Pipeline for
+Optic Axis Mapping (POAM) that will be deepened in future
+releases.</p></li>
+<li><p>The boundaries image is intense at grain contacts but include
+cleavage and fracture planes, which will be isolated in future
+algorithm research. You can preliminary use it to improve your
+optical phase map by subtracting the edges mask from any phase map
+(e.g., SEM-EDX, mineral liberation map).</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>The additional options include:</p>
+<ul class="simple">
+<li><p>Contrast:</p></li>
+<li><p>Delete intermediate files: Extra file management option to save disk
+space. Cube converter uses internal checkpoints to resume interrupted
+work. Even if processing was successful, you can resume and add more
+Ray tracing work if you select No.</p></li>
+<li><p>Parallel processing: Number of CPU core threads that are used to
+process pyramids tiles. The default value is half of your physical
+cores.</p></li>
+</ul>
+</section>
+</section>
+<section id="multi-modal-pyramid-generator">
+<h1>Multi-modal pyramid generator<a class="headerlink" href="#multi-modal-pyramid-generator" title="Link to this heading"></a></h1>
+<p>The aim of the generator is saving a custom image stack as very large
+pyramid(s) for image navigation or analysis in other software.</p>
+<section id="configure-z-stack">
+<h2>Configure Z-stack<a class="headerlink" href="#configure-z-stack" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Output files: Select the output folder (if individual images) or file
+basename (if z-stack). The Browse Folder button allows selecting the
+destination folder. If no name is provided, the basename becomes
+‘default’.</p></li>
+<li><p>Input images: List of file paths that are going to constitute the
+stack. They need to be of the same size (Width x Height) and will be
+read as 3-channel images (convention). There is a flexibility on the
+input image format (flat or pyramidal).</p></li>
+<li><p>Add, Remove, Clear all buttons: Customise options for the list
+arranged in a particular order (up/down arrows).</p></li>
+</ul>
+</section>
+<section id="exportation-mode">
+<h2>Exportation mode<a class="headerlink" href="#exportation-mode" title="Link to this heading"></a></h2>
+<p>This section allows configuring the output(s).</p>
+<ul class="simple">
+<li><p>Pyramid format: The generator can be used either for producing
+pyramidal (OME-TIFF), Deep Zoom, or flat images.</p></li>
+<li><p>Export type: The pyramidal images can be z-stacks or individual
+images, while the other two formats are only allowed for individual
+images. These options exist to allow maximum compatibility with other
+software such as virtual/spectral microscopes (far away from
+Bioinformatics).</p></li>
+</ul>
+<p>The user can input the pixel calibration (microns/pixel) to have a
+calibrated scalebar within other software as long as they can read
+OME-TIFF metadata (QuPath). The value you input will overwrite any
+previous calibration available.</p>
+<p>The calculation of this value depends on the fixed or reference image
+pixel size. For an optical scan we can calculated like this:</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+        \text{Image pixel Size } \left( \frac{\mu\text{m}}{\text{px}} \right) = \text{Objective Calibration } \left( \frac{\mu\text{m}}{\text{px}} \right) \cdot 2^{\text{pyramid level}}
+\end{equation}\]</div>
+<p>The equation is specific to every microscope and experiment, so keeping
+a manual input allows flexibility.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="image_analysis_pipeline.html" class="btn btn-neutral float-left" title="Image analysis pipeline" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="chemistry_simplifier.html" class="btn btn-neutral float-right" title="Chemistry Simplifier" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Marco Acevedo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

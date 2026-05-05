@@ -1,0 +1,136 @@
+Image analysis pipeline
+=======================
+
+Introduction
+============
+
+The petrographic polarising microscope is a foundational tool in
+geoscience research to answer first-order questions such as rock
+micro-structure, fabric, and mineral assemblage at multiple observation
+scales. The arrival of fast and reliable optical slide scanners for
+biomedical imaging has motivated their re-implementation as polarising
+microscopes for imaging rock thin sections. Investigators are now
+demanding sharing their slide data around the world via virtual
+microscopes, scaling up image analysis to hundreds of thin sections, and
+integrating optical imagery with other modalities, especially chemical
+maps.
+
+The literature shows image analysis of rock thin sections studying small
+fields of view and targeting mineral grains with one microscopy
+technique is a challenging task. Large-scale and correlative (more than
+one technique) microscopy requires a step evolution of image analysis
+software and algorithms that can cope with image pyramids for
+registration, segmentation, classification, and image representation of
+pixels and objects that simplify observation of the underlying data. The
+average user will need centralised orchestration of data management,
+image processing, and image analysis for trialling and interacting with
+open-source code and data that might not be locally available (the
+cloud).
+
+Segmentation has been demonstrated to work with QuPath (Bankhead et al.,
+2017) with extensive use of the Pixel Classifier following the
+elaboration of multi-channel images with Image Combiner Warpy. The
+segmentation of integrated reflected light (RL), PPL-max, and XPL-max
+only has achieved results comparable to SEM-based Automated mineralogy
+systems. Optical microscopy reaches good results as a standalone
+technique when the sample has contrasting pleochroism and interference
+colours that are  invariant to crystal orientation.
+
+With this software you can add new dimensions to your analysis since
+polarised optical microscopy can rapidly map for:
+
+- Mineral identification: distinctive colour (Acevedo Zamora & Kamber,
+  2023), isochemical phases
+
+- Texture: grains (properties), boundaries, contacts, neighbouring
+  relationships (Kamber et al., 2025), and rock fabric
+
+- Fine micro-structure (e.g., diagenetic dykes), even if they are not
+  shown in chemical maps (Acevedo Zamora et al., 2024)
+
+- Accessory phases and micro-inclusions (at high magnification)
+
+- Sample depth/volume (focusing as planes or extended depth of focus)
+
+- Mineral optic-axis and/or slow-axis orientation (Acevedo Zamora et
+  al., 2024)
+
+- Sample preparation quality and planing the location of new
+  micro-analytical experiments, e.g., XPL colours depend on thickness
+
+Installation
+============
+
+Citations
+=========
+
+The software depends on open-source as well (see above) and scientific
+citations/feedback. The following research papers already have
+contributed to its evolution:
+
+- Cube Converter:
+
+  - Acevedo Zamora, M. A., & Kamber, B. S. (2023). Petrographic
+    Microscopy with Ray Tracing and Segmentation from Multi-Angle
+    Polarisation Whole-Slide Images. Minerals, 13(2), 156.
+    https://doi.org/10.3390/min13020156
+
+  - Acevedo Zamora, M. (2024). Petrographic microscopy of geologic
+    textural patterns and element-mineral associations with novel image
+    analysis methods [Thesis by publication, Queensland University of
+    Technology]. Brisbane. https://eprints.qut.edu.au/248815/
+
+- Chemistry Simplifier:
+
+  - Acevedo Zamora, M. A., Kamber, B. S., Jones, M. W. M., Schrank, C.
+    E., Ryan, C. G., Howard, D. L., Paterson, D. J., Ubide, T., &
+    Murphy, D. T. (2024). Tracking element-mineral associations with
+    unsupervised learning and dimensionality reduction in chemical and
+    optical image stacks of thin sections. Chemical Geology, 650,
+    121997. https://doi.org/10.1016/j.chemgeo.2024.121997
+
+  - Acevedo Zamora, M. (2024). Petrographic microscopy of geologic
+    textural patterns and element-mineral associations with novel image
+    analysis methods [Thesis by publication, Queensland University of
+    Technology]. Brisbane. https://eprints.qut.edu.au/248815/
+
+  - Ubide, T., Murphy, D. T., Emo, R. B., Jones, M. W. M., Acevedo
+    Zamora, M. A., & Kamber, B. S. (2025). Early pyroxene
+    crystallisation deep below mid-ocean ridges. Earth and Planetary
+    Science Letters, 663, 119423.
+    https://doi.org/10.1016/j.epsl.2025.119423
+
+- Phase Interpreter:
+
+  - Acevedo Zamora, M. A., & Kamber, B. S. (2023). Petrographic
+    Microscopy with Ray Tracing and Segmentation from Multi-Angle
+    Polarisation Whole-Slide Images. Minerals, 13(2), 156.
+    https://doi.org/10.3390/min13020156
+
+  - Acevedo Zamora, M. A., Kamber, B. S., Jones, M. W. M., Schrank, C.
+    E., Ryan, C. G., Howard, D. L., Paterson, D. J., Ubide, T., &
+    Murphy, D. T. (2024). Tracking element-mineral associations with
+    unsupervised learning and dimensionality reduction in chemical and
+    optical image stacks of thin sections. Chemical Geology, 650,
+    121997. https://doi.org/10.1016/j.chemgeo.2024.121997
+
+  - Acevedo Zamora, M. (2024). Petrographic microscopy of geologic
+    textural patterns and element-mineral associations with novel image
+    analysis methods [Thesis by publication, Queensland University of
+    Technology]. Brisbane. https://eprints.qut.edu.au/248815/
+
+  - Ubide, T., Murphy, D. T., Emo, R. B., Jones, M. W. M., Acevedo
+    Zamora, M. A., & Kamber, B. S. (2025). Early pyroxene
+    crystallisation deep below mid-ocean ridges. Earth and Planetary
+    Science Letters, 663, 119423.
+    https://doi.org/10.1016/j.epsl.2025.119423
+
+  - Kamber, B. S., Acevedo Zamora, M. A., Rodrigues, R. F., Li, M.,
+    Yaxley, G. M., & Ng, M. (2025). Exploring High PT Experimental
+    Charges Through the Lens of Phase Maps. Minerals, 15(4), 355.
+    https://doi.org/10.3390/min15040355
+
+  - Rodrigues, R. F., Yaxley, G. M., & Kamber, B. S. (2025). Phase
+    relations and solidus temperature of garnet lherzolite at 5 GPa
+    revisited. Contributions to Mineralogy and Petrology, 180(9), 57.
+    https://doi.org/10.1007/s00410-025-02250-4

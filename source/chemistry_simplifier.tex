@@ -1,0 +1,138 @@
+\section{Chemistry Simplifier}
+\label{chap:repo2}
+	
+	Chemistry Simplifier software is dedicated to improve the understanding of micro-analytical maps from rock thin sections (mounts, pucks) obtained from analysing large sample surfaces (mm$^{2}$). The software dimensionally reduces and saves false-colour maps as single RGB images (TIF format). The main objective is documenting and discovering new, often cryptic, patterns within the mineral assemblage that are saved in a vast input image stack. This is possible by summarising the sample content into three dimensions (red-green-blue channels) to ease and speed up descriptions and characterisations. Therefore, the software gives people and AI-enabled software a kick start on high-level information about the rock (veining, fabric, matrix) and minerals (chemical zonation, resorption, diffusion pattern, sector zoning) that often require browsing the maps for hundreds of hours in only a few minutes. For instance, an SEM-EDX image (10'000x20'000 px) with 100 chemical elements (characteristic X-ray lines) can be processed in ~15 minutes. 
+	
+	The user can import chemical maps as single channel images after custom search (in most formats), selection, and sorting during the Analysis Definition step. The available models are the Principal Component Analysis (PCA), Deep Sparse Autoencoder (DSA), and the Uniform Manifold Approximation and Projection (UMAP). Each have strengths and weaknesses that complement each other and depend on the sample `composition', making the software a good choice to study high-resolution and highly dimensional geochemical maps and other data types (any microscopy/spectroscopy technique, satellite imagery, art paintings, etc.) The results are saved in a folder hierarchy to ease saving output trials with different tags and metadata. This allows remembering the processing parameters and re-loading previous unsupervised learning models to enable inter-sample scalability (same parameters applied to new samples). 	
+	
+	After extensive trialling on already well-characterised samples, I demonstrated that:
+	
+	\begin{itemize}		
+		\item PCA can more robust to noisy and/or artefact image inputs than DSA. Therefore, PCA is the default choice (for initial assessment and image registration).
+		\item PCA tends to highlight mineralogy while DSA is attentive to mineralogy and their compositional zonation within crystals.
+		\item UMAP is good at distinguishing mineralogy and superior at denoising the output (grain/zone boundaries) than PCA because it is a non-linear method.
+		\item UMAP slows down when fitting the manifold to millions of pixels, making it slower than PCA and DSA.
+	\end{itemize}
+	
+	The image alignment section requires control points that have been placed manually using ImageJ BigWarp plugin (Bogovic et al., 2016). The plugin allows exporting a 'landmarks.csv' file containing the ID and locations (X, Y) of the placemarks accross the moving and fixed images (at least 4 points are required to fit the transform models). This repository contains an example CSV to show the user for required format (see 'landmarks\_bse\_xpl.csv').
+	
+	\section{Image processing}
+		
+	\subsection{Data management}
+	\begin{itemize}
+		
+		\item Input: Folder path containing the input images. Browse shows both folders and files and allows selecting a specific folder.
+		\item Image format: File path extension of the input images.
+		\item Search (optional): Python regular expression to parse the experimental files required. Use when files have a particular prefix/suffix.
+		\item Output: Name of the results folder. We call them running trials after defining the Image Processing step. It is generated when refreshing the application. After running the application, the output folder contains the following metadata, intermediate image folders, and outputs:
+			\begin{itemize}
+				\item \directory{\textcolor{MyBlue}{trial\_\{number\} > pyramids}}: Linear, natural log, and original pyramidal stacks (BigTiff format). 
+				\item \directory{\textcolor{MyBlue}{trial\_\{number\} > recoloured\_pctOut\{value\}}}: Montages of every input saved using the chosen settings (contrast, colourmaps).
+				\item \directory{\textcolor{MyBlue}{trial\_\{number\} > transformation\_results}}: Tag sub-folder outputs.
+				\item descriptiveStats.csv: Statistics of the input images and calculated min/max boundaries for reproducing the colour schema.
+				\item tileConfiguration.csv: Bounding boxes of every tile to be exacted from the BigTiffs
+			\end{itemize}
+			
+		\item Output sub-folder: Name of the iteration folder. We call them running tags after defining the Analysis and Output adjustments. It is generated when running the application. It is found as \directory{\textcolor{MyBlue}{trial\_\{number\} > transformation\_results > tag\_\{number\}}}
+			\begin{itemize}                
+				\item \textcolor{MyBlue}{input\_run.csv}: List of chemical maps used for future reference.
+				\item \textcolor{MyBlue}{\{model\}\_model.\{extension\}}: Dimensionality reduction models saved in different formats like PKL (for PCA), XML (for UMAP) and TAR (for DSA).
+				\item \textcolor{MyBlue}{\{model\}\_tiles}: Transformed tiles ready for stitching.
+				\item \textcolor{MyBlue}{montage\_\{model\}}: outputs saved as float and uint8 images (flat TIF) for opening downstream.
+				\item \textcolor{MyBlue}{Descriptive stats of the montages (CSV)}: Metadata required for reproducing the colour schema.
+			\end{itemize}
+			
+	\end{itemize}
+	
+	\subsection{Image pyramid operations}
+	
+	An image pyramid is a hierarchical representation of a very large original image at different spatial scales. This format is required in modern image analysis software for speeding up processing.
+	
+	\begin{itemize}
+		
+		\item Tile size: Image size (pixels) given to the squared image pyramid tiles.
+		\item Bit-depth scaling: Check boxes of the first pixel re-scaling operation. The image is scaled within min/max bounds to vary between 0 and 1 (float32). It can be linear (arithmetic operation), natural logarithm (algebraic operation), and original (no scaling applied).
+		\item Contrast 1: The min/max bounds above are found using percentiles. The percentage to be capped at the top and bottom of an input montage channel histogram to reduce noise and outliers pixels.
+		\item Median filter: Sliding window or kernel size (3x3 px) for calculating a median value that will replace the neighborhood center pixel. It eliminates salt-and-pepper noise while preserving edges.
+		\item Normalisation: Second pixel re-scaling operation to fit the 0-1 range. 
+			\begin{itemize}
+				\item Normalisation (Min-Max scaling) subtracts the minimum on the whole image and divides by the range assuming the data have similar magnitudes.
+				\item Standarisation subtracts the mean and divides by the standard deviation assuming the data have different magnitudes and follow Gaussian distributions.
+			\end{itemize}		
+		
+	\end{itemize}
+	
+	\section{Analysis definition}
+	
+	\subsection{Input list}	
+	
+	\begin{itemize}
+		
+		\item Scaling: Selection of the first pixel re-scaling to be processed further. We can only use log scale if it has been pre-computed.
+		\item Selected chemical maps: Custom list of file paths of the input images. They can also be in different folders. After running, the metadata saves them in exactly the same order (see \texttt{inputs\_run.csv}) 
+		\item Refresh button: Search the images summoned in the Image Processing step.
+		\item Add, Remove, Clear all buttons: Customise the image list.
+		
+	\end{itemize}
+	
+	\subsection{Dimensionality reduction}
+	
+	A transformation of data (pixel channels) from a high-dimensional space into a low-dimensional space (representation) minimising the loss of information. We use the 3D embedded space to represent red, green, and blue colours in the image space. 
+	
+	The checkbox allow enabling the desired representation for the tag folder. The model (hyper-)parameters can be adjusted clicking the gearbox buttons. Optionally, previously saved models be retrieved from a previous iteration (tag) using the `...' button or filling the path text boxes on the corresponding model.
+	
+	\begin{itemize}
+		\item \textbf{Principal component analysis (PCA):} Factorisation method to obtain the rotation and translation operations required to represent the data in the space of maximum variability (orthogonal principal component axes) using a combination of eigen-vectors calculated from the input variables.
+		
+		\item \textbf{Deep sparse autoencoder (DSA):} Neural network model that learns a meaningful representation of the input data. It has symmetrical, fully-connected layers where the input and output nodes are identical, surrounding a central bottleneck (3 channels). A cost regularisation term centers the batch nodes around a normally distributed value (KL sparsity target $\rho \approx 0.5$). This ensures half of the nodes are deactivated (moderately dense representation) and provides sufficient colour contrast if the learning rate is not too high (see \texttt{loss\_plot.png}).
+		
+		\item \textbf{Uniform manifold approximation and projection (UMAP):} Graph-based method that preserves both local and global data structure. It uses fuzzy topology to create a high-dimensional node graph and iteratively optimizes a low-dimensional layout (embedding) to reproduce that structure. The local connectivity of the data points is quantified by the number of neighbours and the distance metric (Euclidean). 
+	\end{itemize}
+	
+	\subsubsection{Processed volume}
+	
+	A user needs to have results as fast as possible or in a few iterations only. This section allows fast turnaround by reducing the computational load with a trade-off on the quality of image representation. This feature was inspired by QuPath software.	
+	
+	\begin{itemize}
+		
+		\item Downsampling: Re-sizing factor of the input and output images.
+			\begin{itemize}				
+				\item Scale: Factor controlling the input image size to fit or train the models.
+				\item Resolution: Factor controlling the output image size that the models will have to predict.
+			\end{itemize}
+		\item Subsampling: Randomly sampled pixels are obtained from the downsampled image. The spin boxes (0-1) determine the fraction of pixels to factorise (PCA), connect (UMAP), and fit (DSA) the models. Pixels with a constant value across all channels are ignored (background).
+		
+	\end{itemize}
+	
+	\section{Output adjustments}
+	
+	Colour (RGB) and image alignment modifications on the dimensionally reduced montages. 
+	
+	The final option is the number of cores to use when running the parallel prediction of the underlying image pyramid tiles.
+	
+	\subsection{Montage operations}
+	
+	\begin{itemize}
+		
+		\item Recoloured chemical maps: Whether or not to save the re-scaled images into recoloured maps.
+		\item Colormap: Selection of heatmap to recolour those maps following Python.
+		\item Contrast 2: The percentage to be capped at the top and bottom of an output montage channel histogram to reduce noise and outliers pixels.
+		\item Flip upside down: Whether or not to flip the image vertically in case the image was saved in a different orientation after the instrument acquisition. 
+		
+	\end{itemize}
+	
+	\subsection{Image alignment}
+	
+	\begin{itemize}
+		
+		\item Control points: File path to the landmarks file (CSV) saved from ImageJ BigWarp plugin.
+		\item Moving images: Selection to include the recoloured, dimensionaly reduced, and original images in the image aligning loop.
+		\item Moving image (optional): Additional image that needs to be included in the loop. For example, if all input images are chemical images. The optional image could be the individual Backscattered Electron image (BSE) that represents density (not chemistry). 
+		\item Fixed image: File path to the fixed (reference) image in the image registration process.
+		\item Target WxH: Information about the size of the fixed image. If the fixed image is missing, you only need to remember the original size.
+		\item Transformation: Selection of the rigid (Affine, Similarity) or non-rigid (Thin-plate spline) image transform for the inverse estimation.
+		\item Interpolation: Selection of the pixel value interpolation method to estimate the registered moving image pixels. It can be nearest neighbour (original values), bi-linear, or bi-cubic interpolations, in order of increasing computation speeds and spatial resolution detail.		
+		
+	\end{itemize}
+		
+	% --- REPOSITORY 3 ---

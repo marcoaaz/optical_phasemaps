@@ -1,0 +1,248 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image analysis pipeline &mdash; Optical Phase Maps: Documentation  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Cube Converter" href="cube_converter.html" />
+    <link rel="prev" title="Documentation Hub" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Optical Phase Maps: Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Image analysis pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#citations">Citations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cube_converter.html">Cube Converter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cube_converter.html#polarised-microscopy-processor">Polarised microscopy processor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cube_converter.html#multi-modal-pyramid-generator">Multi-modal pyramid generator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chemistry_simplifier.html">Chemistry Simplifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chemistry_simplifier.html#image-processing">Image processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chemistry_simplifier.html#analysis-definition">Analysis definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chemistry_simplifier.html#output-adjustments">Output adjustments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phase_interpreter.html">Phase Interpreter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phase_interpreter.html#define-map">Define map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phase_interpreter.html#customise-phase-map">Customise phase map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phase_interpreter.html#image-analysis">Image analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline_workshop.html">Pipeline workshop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline_workshop.html#workshop-exercises">Workshop exercises</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Optical Phase Maps: Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Image analysis pipeline</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/image_analysis_pipeline.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="image-analysis-pipeline">
+<h1>Image analysis pipeline<a class="headerlink" href="#image-analysis-pipeline" title="Link to this heading"></a></h1>
+</section>
+<section id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h1>
+<p>The petrographic polarising microscope is a foundational tool in
+geoscience research to answer first-order questions such as rock
+micro-structure, fabric, and mineral assemblage at multiple observation
+scales. The arrival of fast and reliable optical slide scanners for
+biomedical imaging has motivated their re-implementation as polarising
+microscopes for imaging rock thin sections. Investigators are now
+demanding sharing their slide data around the world via virtual
+microscopes, scaling up image analysis to hundreds of thin sections, and
+integrating optical imagery with other modalities, especially chemical
+maps.</p>
+<p>The literature shows image analysis of rock thin sections studying small
+fields of view and targeting mineral grains with one microscopy
+technique is a challenging task. Large-scale and correlative (more than
+one technique) microscopy requires a step evolution of image analysis
+software and algorithms that can cope with image pyramids for
+registration, segmentation, classification, and image representation of
+pixels and objects that simplify observation of the underlying data. The
+average user will need centralised orchestration of data management,
+image processing, and image analysis for trialling and interacting with
+open-source code and data that might not be locally available (the
+cloud).</p>
+<p>Segmentation has been demonstrated to work with QuPath (Bankhead et al.,
+2017) with extensive use of the Pixel Classifier following the
+elaboration of multi-channel images with Image Combiner Warpy. The
+segmentation of integrated reflected light (RL), PPL-max, and XPL-max
+only has achieved results comparable to SEM-based Automated mineralogy
+systems. Optical microscopy reaches good results as a standalone
+technique when the sample has contrasting pleochroism and interference
+colours that are  invariant to crystal orientation.</p>
+<p>With this software you can add new dimensions to your analysis since
+polarised optical microscopy can rapidly map for:</p>
+<ul class="simple">
+<li><p>Mineral identification: distinctive colour (Acevedo Zamora &amp; Kamber,
+2023), isochemical phases</p></li>
+<li><p>Texture: grains (properties), boundaries, contacts, neighbouring
+relationships (Kamber et al., 2025), and rock fabric</p></li>
+<li><p>Fine micro-structure (e.g., diagenetic dykes), even if they are not
+shown in chemical maps (Acevedo Zamora et al., 2024)</p></li>
+<li><p>Accessory phases and micro-inclusions (at high magnification)</p></li>
+<li><p>Sample depth/volume (focusing as planes or extended depth of focus)</p></li>
+<li><p>Mineral optic-axis and/or slow-axis orientation (Acevedo Zamora et
+al., 2024)</p></li>
+<li><p>Sample preparation quality and planing the location of new
+micro-analytical experiments, e.g., XPL colours depend on thickness</p></li>
+</ul>
+</section>
+<section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h1>
+</section>
+<section id="citations">
+<h1>Citations<a class="headerlink" href="#citations" title="Link to this heading"></a></h1>
+<p>The software depends on open-source as well (see above) and scientific
+citations/feedback. The following research papers already have
+contributed to its evolution:</p>
+<ul class="simple">
+<li><p>Cube Converter:</p>
+<ul>
+<li><p>Acevedo Zamora, M. A., &amp; Kamber, B. S. (2023). Petrographic
+Microscopy with Ray Tracing and Segmentation from Multi-Angle
+Polarisation Whole-Slide Images. Minerals, 13(2), 156.
+<a class="reference external" href="https://doi.org/10.3390/min13020156">https://doi.org/10.3390/min13020156</a></p></li>
+<li><p>Acevedo Zamora, M. (2024). Petrographic microscopy of geologic
+textural patterns and element-mineral associations with novel image
+analysis methods [Thesis by publication, Queensland University of
+Technology]. Brisbane. <a class="reference external" href="https://eprints.qut.edu.au/248815/">https://eprints.qut.edu.au/248815/</a></p></li>
+</ul>
+</li>
+<li><p>Chemistry Simplifier:</p>
+<ul>
+<li><p>Acevedo Zamora, M. A., Kamber, B. S., Jones, M. W. M., Schrank, C.
+E., Ryan, C. G., Howard, D. L., Paterson, D. J., Ubide, T., &amp;
+Murphy, D. T. (2024). Tracking element-mineral associations with
+unsupervised learning and dimensionality reduction in chemical and
+optical image stacks of thin sections. Chemical Geology, 650,
+121997. <a class="reference external" href="https://doi.org/10.1016/j.chemgeo.2024.121997">https://doi.org/10.1016/j.chemgeo.2024.121997</a></p></li>
+<li><p>Acevedo Zamora, M. (2024). Petrographic microscopy of geologic
+textural patterns and element-mineral associations with novel image
+analysis methods [Thesis by publication, Queensland University of
+Technology]. Brisbane. <a class="reference external" href="https://eprints.qut.edu.au/248815/">https://eprints.qut.edu.au/248815/</a></p></li>
+<li><p>Ubide, T., Murphy, D. T., Emo, R. B., Jones, M. W. M., Acevedo
+Zamora, M. A., &amp; Kamber, B. S. (2025). Early pyroxene
+crystallisation deep below mid-ocean ridges. Earth and Planetary
+Science Letters, 663, 119423.
+<a class="reference external" href="https://doi.org/10.1016/j.epsl.2025.119423">https://doi.org/10.1016/j.epsl.2025.119423</a></p></li>
+</ul>
+</li>
+<li><p>Phase Interpreter:</p>
+<ul>
+<li><p>Acevedo Zamora, M. A., &amp; Kamber, B. S. (2023). Petrographic
+Microscopy with Ray Tracing and Segmentation from Multi-Angle
+Polarisation Whole-Slide Images. Minerals, 13(2), 156.
+<a class="reference external" href="https://doi.org/10.3390/min13020156">https://doi.org/10.3390/min13020156</a></p></li>
+<li><p>Acevedo Zamora, M. A., Kamber, B. S., Jones, M. W. M., Schrank, C.
+E., Ryan, C. G., Howard, D. L., Paterson, D. J., Ubide, T., &amp;
+Murphy, D. T. (2024). Tracking element-mineral associations with
+unsupervised learning and dimensionality reduction in chemical and
+optical image stacks of thin sections. Chemical Geology, 650,
+121997. <a class="reference external" href="https://doi.org/10.1016/j.chemgeo.2024.121997">https://doi.org/10.1016/j.chemgeo.2024.121997</a></p></li>
+<li><p>Acevedo Zamora, M. (2024). Petrographic microscopy of geologic
+textural patterns and element-mineral associations with novel image
+analysis methods [Thesis by publication, Queensland University of
+Technology]. Brisbane. <a class="reference external" href="https://eprints.qut.edu.au/248815/">https://eprints.qut.edu.au/248815/</a></p></li>
+<li><p>Ubide, T., Murphy, D. T., Emo, R. B., Jones, M. W. M., Acevedo
+Zamora, M. A., &amp; Kamber, B. S. (2025). Early pyroxene
+crystallisation deep below mid-ocean ridges. Earth and Planetary
+Science Letters, 663, 119423.
+<a class="reference external" href="https://doi.org/10.1016/j.epsl.2025.119423">https://doi.org/10.1016/j.epsl.2025.119423</a></p></li>
+<li><p>Kamber, B. S., Acevedo Zamora, M. A., Rodrigues, R. F., Li, M.,
+Yaxley, G. M., &amp; Ng, M. (2025). Exploring High PT Experimental
+Charges Through the Lens of Phase Maps. Minerals, 15(4), 355.
+<a class="reference external" href="https://doi.org/10.3390/min15040355">https://doi.org/10.3390/min15040355</a></p></li>
+<li><p>Rodrigues, R. F., Yaxley, G. M., &amp; Kamber, B. S. (2025). Phase
+relations and solidus temperature of garnet lherzolite at 5 GPa
+revisited. Contributions to Mineralogy and Petrology, 180(9), 57.
+<a class="reference external" href="https://doi.org/10.1007/s00410-025-02250-4">https://doi.org/10.1007/s00410-025-02250-4</a></p></li>
+</ul>
+</li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Documentation Hub" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cube_converter.html" class="btn btn-neutral float-right" title="Cube Converter" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Marco Acevedo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
